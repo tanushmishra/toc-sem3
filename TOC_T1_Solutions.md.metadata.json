@@ -1,0 +1,5 @@
+{
+  "summary": "Complete solved solutions for the TOC Test 1 question paper. Covers all 6 questions: Q1 (string counting & prefix/suffix), Q2 (language operations L1·L2*∪L3*), Q3 (DFA with ≥1 'a' and exactly 2 'b's, 7 states), Q4 (NFA for third-from-right='a', 4 states), Q5a (DFA minimization via Mark algorithm - reduces 6-state DFA to 3 states), Q5b (ε-NFA→DFA subset construction - 7-state DFA), Q6a (Mealy machine design), Q6b (Mealy→Moore conversion with state splitting).",
+  "updatedAt": "2026-09-05T16:31:36.579584900Z",
+  "userFacing": true
+}

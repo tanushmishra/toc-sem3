@@ -1,0 +1,484 @@
+Introduction to Automata Theory
+
+Non-Recursively Enumerable Languages
+
+Recursively Enumerable Languages
+
+Recursive Languages
+
+Context-Free Languages
+
+Regular Languages
+
+2
+
+What is Automata Theory?
+
+• Study of abstract computing devices, or “machines”
+• Automaton = an abstract computing device
+
+• Note: A “device” need not even be a physical hardware!
+
+• A fundamental question in computer science: 
+
+• To find out what different models of machines can do and what 
+
+they cannot do
+
+• The theory of computation
+
+3
+
+Automata Theory - Terms
+
+• A model of computation is the definition 
+of the set of allowable operations used in 
+computation and their respective costs.
+
+• What is Algorithm????
+
+• Automata Theory is the study of Abstract 
+
+Machines and Automata [Self Acting 
+Machine]
+
+• Formal Language: recognized by an 
+
+automaton
+
+4
+
+Different Kinds of Automata
+Automata are distinguished by the temporary memory
+
+• Finite Automata:
+
+no temporary memory
+
+• Pushdown Automata:
+
+stack
+
+• Turing Machines:
+
+random access memory
+
+5
+
+Memory affects computational power:
+
+More flexible memory
+
+results to
+
+The solution of more computational 
+problems
+
+6
+
+Languages
+
+7
+
+ 
+Formal Language and Automata
+
+• Formal language
+
+• a subset of the set of all possible strings  from a set 
+
+of symbols 
+
+• example: the set of all syntactically correct C 
+
+programs
+• Automata
+
+• abstract, mathematical model of computer
+• examples: finite automata, pushdown automata 
+
+Turing machine,  many others
+
+• Let’s consider each of these in turn
+
+Formal language
+
+Alphabet = finite set of symbols or characters
+                   examples: S = {a,b}, binary, ASCII
+
+String = finite sequence of symbols from an alphabet
+              examples: aab, bbaba, also computer  programs
+
+A formal language is a set of strings over an alphabet
+Examples of formal languages over alphabet S = {a, b}:
+
+  L1 = {aa, aba, aababa, aa}
+  L2 = {all strings containing just two a’s and any number of b’s}
+
+A formal language can be finite or infinite.
+
+              
+Alphabets
+
+• An alphabet is a finite set of symbols.
+• Usually, use Σ to represent an alphabet.
+• Examples:
+
+ Σ = {0,1}, the set of binary digits.
+ Σ = {a, b, … , z}, the set of all lower-case letters.
+ Σ = {(, )}, the set of open and close parentheses.
+
+Strings 
+
+• A string is a finite sequence of symbols from an alphabet.
+• Examples:
+
+• 0011 and 11 are strings from Σ = {0,1}
+• abc and bbb are strings from Σ = {a, b, … , z}
+• (()(())) and )(() are strings from Σ = {(, )}
+
+Strings
+
+• Empty string: ε
+• Length of string: |0010| = 4, |aa| = 2, |ε|=0
+• Prefix of string: aaabc, aaabc, aaabc
+• Suffix of string: aaabc, aaabc, aaabc 
+• Substring of string: aaabc, aaabc, aaabc
+
+Strings
+
+• Concatenation: ω=abd, α=ce, ωα=abdce
+• Exponentiation: ω=abd, ω3=abdabdabd, ω0=ε
+• Reversal: ω=abd, ωR = dba
+• Σk = set of all k-length strings formed by the 
+symbols in Σ
+ e.g., Σ={a,b}, Σ2={ab, ba, aa, bb}, Σ0={ε}
+
+Strings
+
+• Kleene Closure Σ* = Σ0∪Σ1∪Σ2∪… = ∪
+k≥0 Σk
+e.g., Σ={a, b}, Σ* = {ε, a, b, ab, aa, ba, bb, aaa, 
+aab, abb, … } is the set of all strings formed by 
+a’s and b’s.
+• Σ+ = Σ1∪Σ2∪Σ3∪… = ∪
+ i.e., Σ* without the empty string.
+• S+ = S* - {ε}
+
+k>0 Σk
+
+Strings (continued)
+
+We often use string variables;  u = aab, v = bbaba
+
+Operations on strings:
+   length:  |u| = 3
+   reversal: uR = baa
+   concatenation: uv = aabbbaba
+
+The empty string, denoted ε (or λ somewhere)
+ has some  special properties:
+| ε | = 0
+
+ ε w = w ε  = w
+
+ 
+Strings (continued)
+
+If w is a string, then wn stands for the 
+string obtained by repeating w n times.
+
+w0 = ε
+
+Some questions
+
+• What is {ε, 01, 001} ∪ {ε, 00, 10}?
+• What is the concatenation of {0, 11, 010} 
+and {ε, 10, 010}?
+• What are the 5 shortest strings in the 
+language {0i1i | i ≥ 0}?
+• What is the powerset {a, b, ab}?
+
+Languages
+
+A language is any subset of 
+
+Example:
+
+Languages:
+
+18
+
+Note:
+
+Sets
+
+Set size
+
+Set size
+
+String length
+
+19
+
+Another Example
+
+• An infinite language
+
+20
+
+Operations on Languages
+
+• The usual set operations
+
+• Complement: 
+
+21
+
+Reverse
+
+• Definition:
+
+• Examples:
+
+Costas Busch - RPI
+
+22
+
+Concatenation
+
+• Definition:
+
+• Example: 
+
+23
+
+Another Operation
+
+• Definition:
+
+• Special case: 
+
+24
+
+More Examples
+
+•  
+
+25
+
+Star-Closure (Kleene *)
+
+• Definition:
+
+• Example:
+
+26
+
+Positive Closure
+
+• Definition:
+
+27
+
+Finite Automata
+
+28
+
+ 
+Finite Automaton
+
+•   
+
+Input
+
+String
+
+Finite
+Automaton
+
+Output
+
+String
+
+29
+
+ 
+Finite Accepter
+
+•  
+
+Input
+
+String
+
+Finite
+Automaton
+
+Output
+
+“Accept”
+     or
+“Reject”
+
+30
+
+ 
+Transition Graph
+
+Abba -Finite Accepter
+
+•  
+
+initial
+state
+
+transition
+
+state
+
+  final
+  state
+“accept”
+
+31
+
+ 
+Initial Configuration
+
+Input String
+
+32
+
+ 
+ 
+Reading the Input
+
+•  
+
+33
+
+ 
+•  
+
+34
+
+ 
+•  
+
+35
+
+ 
+•   
+
+36
+
+ 
+Input finished
+
+Output: “accept”
+
+37
+
+ 
+Rejection
+
+38
+
+ 
+ 
+•  
+
+39
+
+ 
+•  
+
+40
+
+ 
+•  
+
+41
+
+ 
+Input finished
+
+Output:
+“reject”
+
+42
+
+ 
+Another Rejection
+
+43
+
+ 
+ 
+•  
+
+Output:
+“reject”
+
+44
+
+ 
+45
+
+46
+
+47
+
+48
+
+Input Alphabet 
+
+•  
+
+49
+
+ 
+Set of States 
+
+50
+
+ 
+ 
+Initial State 
+
+51
+
+ 
+ 
+Set of Final States
+
+52
+
+ 
+ 
+Transition Function 
+
+53
+
+ 
+ 
+54
+
+ 
+ 
+55
+
+ 
+ 
+56
+
+ 
+Transition Function
+
+•  
+
+57
+
+ 
+

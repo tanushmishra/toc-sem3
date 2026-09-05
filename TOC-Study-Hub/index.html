@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOC Study Hub — Theory of Computation</title>
+<style>
+:root{
+  --bg:#07090f;--bg2:#0d1117;--bg3:#161b22;--bg4:#1c2128;--bg5:#21262d;
+  --sidebar:#080c14;--border:#21262d;--border2:#30363d;
+  --accent:#818cf8;--accent2:#6366f1;--cyan:#22d3ee;--amber:#fbbf24;
+  --green:#4ade80;--red:#f87171;--purple:#c084fc;
+  --text:#e6edf3;--text2:#b1bac4;--text3:#7d8590;
+  --active-bg:rgba(99,102,241,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;font-size:15px;line-height:1.7;}
+.sidebar{width:260px;min-width:260px;background:var(--sidebar);border-right:1px solid var(--border);position:sticky;top:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column;z-index:100;scrollbar-width:thin;scrollbar-color:var(--bg5) transparent;}
+.sidebar::-webkit-scrollbar{width:4px;}.sidebar::-webkit-scrollbar-thumb{background:var(--bg5);border-radius:2px;}
+.logo{padding:20px 18px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.logo-icon{font-size:22px;}
+.logo-text{font-size:16px;font-weight:700;letter-spacing:-.3px;}
+.logo-sub{font-size:11px;color:var(--text3);margin-top:1px;}
+.nav{padding:8px 0 20px;}
+.nav-group-title{padding:10px 18px 3px;font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.09em;}
+.nav-item{display:flex;align-items:center;gap:8px;padding:7px 18px;cursor:pointer;transition:.12s;font-size:13px;color:var(--text2);text-decoration:none;border-left:2px solid transparent;}
+.nav-item:hover{color:var(--text);background:rgba(255,255,255,.04);}
+.nav-item.active{color:var(--accent);background:var(--active-bg);border-left-color:var(--accent2);}
+.nav-item .ico{font-size:13px;min-width:15px;text-align:center;}
+.main{flex:1;min-width:0;overflow-x:hidden;}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(7,9,15,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:11px 36px;display:flex;align-items:center;justify-content:space-between;}
+.topbar-title{font-size:13px;color:var(--text3);}
+.topbar-badge{font-size:11px;padding:3px 10px;border-radius:20px;background:rgba(99,102,241,.18);color:var(--accent);border:1px solid rgba(99,102,241,.3);font-weight:600;}
+.content{padding:40px 44px 80px;max-width:980px;}
+.hero{background:linear-gradient(135deg,#0d1117 0%,#121b30 60%,#0a1020 100%);border:1px solid var(--border2);border-radius:14px;padding:44px;margin-bottom:44px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-80px;right:-60px;width:280px;height:280px;background:radial-gradient(circle,rgba(99,102,241,.14) 0%,transparent 70%);}
+.hero-tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px;}
+.hero h1{font-size:34px;font-weight:800;letter-spacing:-.5px;margin-bottom:10px;background:linear-gradient(135deg,#e6edf3 30%,#818cf8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero p{color:var(--text2);font-size:15px;max-width:540px;margin-bottom:24px;}
+.chips{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{padding:5px 14px;border-radius:20px;font-size:12px;font-weight:500;border:1px solid var(--border2);color:var(--text2);background:var(--bg3);}
+.chip.c1{border-color:rgba(34,211,238,.35);color:var(--cyan);}
+.chip.c2{border-color:rgba(129,140,248,.35);color:var(--accent);}
+.chip.c3{border-color:rgba(196,132,252,.35);color:var(--purple);}
+.section{margin-bottom:60px;}
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.sec-icon{font-size:20px;}
+.sec-title{font-size:21px;font-weight:700;letter-spacing:-.3px;}
+.badge{font-size:11px;padding:2px 10px;border-radius:20px;font-weight:600;}
+.b-cyan{background:rgba(34,211,238,.1);color:var(--cyan);border:1px solid rgba(34,211,238,.22);}
+.b-ind{background:rgba(99,102,241,.1);color:var(--accent);border:1px solid rgba(99,102,241,.22);}
+.b-pur{background:rgba(196,132,252,.1);color:var(--purple);border:1px solid rgba(196,132,252,.22);}
+.b-amb{background:rgba(251,191,36,.1);color:var(--amber);border:1px solid rgba(251,191,36,.22);}
+.b-grn{background:rgba(74,222,128,.1);color:var(--green);border:1px solid rgba(74,222,128,.22);}
+.card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:20px 22px;margin-bottom:14px;}
+.ctitle{font-size:13.5px;font-weight:600;color:var(--accent);margin-bottom:10px;display:flex;align-items:center;gap:7px;}
+.def{border-left:3px solid var(--accent2);background:rgba(99,102,241,.07);border-radius:0 8px 8px 0;padding:12px 16px;margin:10px 0;}
+.def.cy{border-left-color:var(--cyan);background:rgba(34,211,238,.06);}
+.def.am{border-left-color:var(--amber);background:rgba(251,191,36,.06);}
+.def.gr{border-left-color:var(--green);background:rgba(74,222,128,.06);}
+.def.rd{border-left-color:var(--red);background:rgba(248,113,113,.06);}
+.def-lbl{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:4px;}
+.def.cy .def-lbl{color:var(--cyan);}.def.am .def-lbl{color:var(--amber);}.def.gr .def-lbl{color:var(--green);}.def.rd .def-lbl{color:var(--red);}
+.tw{overflow-x:auto;margin:10px 0;border-radius:8px;border:1px solid var(--border);}
+table{width:100%;border-collapse:collapse;font-size:13.5px;}
+thead tr{background:var(--bg4);}
+th{padding:9px 14px;text-align:left;font-weight:600;color:var(--text2);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid var(--border2);}
+td{padding:8px 14px;border-bottom:1px solid var(--border);color:var(--text);}
+tr:last-child td{border-bottom:none;}
+tr:nth-child(even) td{background:rgba(255,255,255,.014);}
+.acc{color:var(--green);font-weight:600;}.rej{color:var(--red);}.strt{color:var(--amber);font-weight:600;}
+pre,code{font-family:'JetBrains Mono','Fira Code',Consolas,monospace;}
+.cb{background:#040710;border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin:10px 0;overflow-x:auto;font-size:13px;line-height:1.8;color:#c9d1d9;white-space:pre;}
+code{background:rgba(255,255,255,.09);padding:2px 6px;border-radius:4px;font-size:13px;color:var(--cyan);}
+.alert{display:flex;gap:10px;padding:12px 14px;border-radius:8px;margin:12px 0;border:1px solid;font-size:13.5px;}
+.alert.tip{background:rgba(74,222,128,.05);border-color:rgba(74,222,128,.18);color:#c9f0d5;}
+.alert.warn{background:rgba(251,191,36,.05);border-color:rgba(251,191,36,.18);color:#fde8a0;}
+.alert.info{background:rgba(34,211,238,.05);border-color:rgba(34,211,238,.18);color:#a5f3fc;}
+.ai{font-size:15px;flex-shrink:0;margin-top:1px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:10px 0;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:10px 0;}
+.sc{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;}
+.sn{font-size:28px;font-weight:800;color:var(--accent);}
+.sl{font-size:12px;color:var(--text3);margin-top:3px;}
+.fm{font-family:monospace;background:var(--bg4);border:1px solid var(--border2);border-radius:6px;padding:9px 14px;margin:7px 0;font-size:14px;color:var(--amber);text-align:center;}
+.sep{border:none;border-top:1px solid var(--border);margin:28px 0;}
+.ptabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+.ptab{padding:7px 18px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;border:1px solid var(--border2);color:var(--text2);background:var(--bg3);transition:.13s;}
+.ptab:hover{border-color:var(--accent);color:var(--accent);}
+.ptab.at{background:var(--active-bg);border-color:var(--accent2);color:var(--accent);}
+.pc{display:none;}.pc.show{display:block;}
+.qcard{background:var(--bg3);border:1px solid var(--border);border-radius:10px;margin-bottom:12px;overflow:hidden;}
+.qhdr{display:flex;align-items:center;gap:10px;padding:13px 18px;background:var(--bg4);border-bottom:1px solid var(--border);cursor:pointer;user-select:none;}
+.qhdr:hover{background:var(--bg5);}
+.qnum{width:28px;height:28px;border-radius:50%;background:var(--bg5);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--accent);flex-shrink:0;}
+.qtxt{flex:1;font-size:13.5px;font-weight:500;color:var(--text);}
+.qmeta{display:flex;gap:7px;align-items:center;flex-shrink:0;}
+.mb2{font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:rgba(251,191,36,.1);color:var(--amber);border:1px solid rgba(251,191,36,.22);}
+.cb2{font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:rgba(34,211,238,.07);color:var(--cyan);border:1px solid rgba(34,211,238,.18);}
+.qbody{padding:18px;border-top:1px solid var(--border);}
+.qans{margin-top:10px;padding:13px;background:rgba(74,222,128,.04);border:1px solid rgba(74,222,128,.13);border-radius:8px;}
+.qans-lbl{font-size:10.5px;font-weight:700;text-transform:uppercase;color:var(--green);margin-bottom:7px;letter-spacing:.06em;}
+.tbtn{margin-top:9px;padding:5px 14px;font-size:12px;cursor:pointer;background:transparent;border:1px solid var(--border2);border-radius:6px;color:var(--text3);font-family:inherit;transition:.13s;}
+.tbtn:hover{border-color:var(--green);color:var(--green);}
+.pyq{margin-bottom:18px;padding:18px 20px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;}
+.pyqh{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
+.pyqn{background:var(--accent2);color:white;padding:3px 9px;border-radius:20px;font-size:11.5px;font-weight:700;flex-shrink:0;margin-top:2px;}
+.pyqt{font-size:14px;font-weight:500;}
+.pya{margin-top:10px;padding:14px 16px;background:var(--bg4);border-radius:8px;border-left:3px solid var(--green);}
+.pyal{font-size:10.5px;font-weight:700;text-transform:uppercase;color:var(--green);margin-bottom:8px;letter-spacing:.06em;}
+h2{font-size:17px;font-weight:700;margin:18px 0 9px;color:var(--text);}
+h3{font-size:14.5px;font-weight:600;margin:14px 0 7px;color:var(--text2);}
+p{margin:7px 0;color:var(--text2);}
+ul,ol{padding-left:19px;margin:7px 0;}
+li{margin:3px 0;color:var(--text2);}
+strong{color:var(--text);font-weight:600;}
+em{color:var(--amber);font-style:normal;}
+.mt8{margin-top:8px;}.mt12{margin-top:12px;}.mt16{margin-top:16px;}
+.tc{color:var(--cyan);}.ta{color:var(--amber);}.tg{color:var(--green);}.tp{color:var(--purple);}
+@media(max-width:860px){.sidebar{width:220px;min-width:220px;}.content{padding:28px 20px 60px;}.g2,.g3{grid-template-columns:1fr;}.hero{padding:28px;}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+  <div class="logo">
+    <div class="logo-icon">&#9883;</div>
+    <div>
+      <div class="logo-text">TOC Study Hub</div>
+      <div class="logo-sub">Theory of Computation &middot; Sem 3</div>
+    </div>
+  </div>
+  <div class="nav">
+    <div class="nav-group-title">Overview</div>
+    <a href="#home" class="nav-item active" onclick="setActive(this)"><span class="ico">&#127968;</span>Home</a>
+
+    <div class="nav-group-title" style="margin-top:6px">Unit 1 &mdash; Introduction</div>
+    <a href="#u1-toc" class="nav-item" onclick="setActive(this)"><span class="ico">&#128208;</span>Branches of ToC</a>
+    <a href="#u1-strings" class="nav-item" onclick="setActive(this)"><span class="ico">&#128290;</span>Alphabets &amp; Strings</a>
+    <a href="#u1-langs" class="nav-item" onclick="setActive(this)"><span class="ico">&#127760;</span>Language Operations</a>
+    <a href="#u1-math" class="nav-item" onclick="setActive(this)"><span class="ico">&#128207;</span>Math Prerequisites</a>
+
+    <div class="nav-group-title" style="margin-top:6px">Unit 2 &mdash; Finite Automata</div>
+    <a href="#u2-dfa" class="nav-item" onclick="setActive(this)"><span class="ico">&#129302;</span>DFA</a>
+    <a href="#u2-nfa" class="nav-item" onclick="setActive(this)"><span class="ico">&#128256;</span>NFA &amp; &epsilon;-NFA</a>
+    <a href="#u2-convert" class="nav-item" onclick="setActive(this)"><span class="ico">&#128260;</span>NFA &rarr; DFA</a>
+    <a href="#u2-min" class="nav-item" onclick="setActive(this)"><span class="ico">&#128230;</span>DFA Minimization</a>
+    <a href="#u2-mealy" class="nav-item" onclick="setActive(this)"><span class="ico">&#9881;</span>Moore &amp; Mealy</a>
+    <a href="#u2-closure" class="nav-item" onclick="setActive(this)"><span class="ico">&#128274;</span>Closure Properties</a>
+
+    <div class="nav-group-title" style="margin-top:6px">Unit 3 &mdash; Regular Expr.</div>
+    <a href="#u3-def" class="nav-item" onclick="setActive(this)"><span class="ico">&#10024;</span>RE Definition</a>
+    <a href="#u3-examples" class="nav-item" onclick="setActive(this)"><span class="ico">&#128203;</span>RE Examples</a>
+    <a href="#u3-equiv" class="nav-item" onclick="setActive(this)"><span class="ico">&#9878;</span>RE Equivalence</a>
+    <a href="#u3-fa" class="nav-item" onclick="setActive(this)"><span class="ico">&#8596;</span>RE &harr; Automata</a>
+
+    <div class="nav-group-title" style="margin-top:6px">Previous Year Paper</div>
+    <a href="#pyp" class="nav-item" onclick="setActive(this)"><span class="ico">&#128196;</span>T1 &mdash; All Solutions</a>
+
+    <div class="nav-group-title" style="margin-top:6px">Sample Papers</div>
+    <a href="#papers" class="nav-item" onclick="setActive(this)"><span class="ico">&#128221;</span>4 &times; 6 Question Papers</a>
+  </div>
+</nav>
+
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-title">TOC &middot; Test 1 Prep &middot; Units 1, 2, 3</div>
+    <div class="topbar-badge">16 Marks Pattern</div>
+  </div>
+  <div class="content">
+
+    <div id="home" class="section">
+      <div class="hero">
+        <div class="hero-tag">Exam Ready</div>
+        <h1>Theory of Computation</h1>
+        <p>Complete notes, previous year solutions, and 4 practice papers for Test 1. Covers Units 1&ndash;3 from your class lecture slides.</p>
+        <div class="chips">
+          <span class="chip c1">Unit 1 &middot; Introduction</span>
+          <span class="chip c2">Unit 2 &middot; Finite Automata</span>
+          <span class="chip c3">Unit 3 &middot; Regular Expr.</span>
+          <span class="chip">PYP T1 Full Solutions</span>
+          <span class="chip">4 Sample Papers</span>
+        </div>
+      </div>
+      <div class="g3">
+        <div class="sc"><div class="sn" style="color:var(--cyan)">3</div><div class="sl">Units Covered</div></div>
+        <div class="sc"><div class="sn">8</div><div class="sl">PYP Questions Solved</div></div>
+        <div class="sc"><div class="sn" style="color:var(--amber)">24</div><div class="sl">Sample Questions</div></div>
+      </div>
+      <div class="alert tip mt16"><div class="ai">&#128161;</div><div>Typical paper pattern: Q1a(1M) + Q1b(1M) + Q2(2M) + Q3(2M) + Q4(2M) + Q5(4M) + Q6(4M) = <strong>16 marks</strong>. Heavy focus on DFA construction, NFA&rarr;DFA, and minimization.</div></div>
+    </div>
+
+    <div id="u1-toc" class="section">
+      <div class="sec-head"><div class="sec-icon">&#128208;</div><div class="sec-title">Branches of Theory of Computation</div><span class="badge b-cyan">Unit 1</span></div>
+      <div class="tw"><table>
+        <thead><tr><th>Branch</th><th>Studies</th><th>Tools</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Automata Theory</strong></td><td>Modeling machines; which languages can be recognized</td><td>DFA, NFA, PDA, TM</td></tr>
+          <tr><td><strong>Computability</strong></td><td>What can be computed at all?</td><td>Recursive functions, Turing Machines</td></tr>
+          <tr><td><strong>Complexity Theory</strong></td><td>How efficiently can a problem be solved?</td><td>Time/space classes, P vs NP</td></tr>
+        </tbody>
+      </table></div>
+      <div class="card"><div class="ctitle">Chomsky Hierarchy</div>
+        <div class="cb">Type 3 -- Regular Grammars         -> Finite Automata (FA)
+Type 2 -- Context-Free Grammars    -> Pushdown Automata (PDA)
+Type 1 -- Context-Sensitive        -> Linear Bounded Automata (LBA)
+Type 0 -- Unrestricted (RE)        -> Turing Machine (TM)
+
+FA is a subset of PDA is a subset of LBA is a subset of TM  (strictly nested)</div>
+      </div>
+      <div class="alert info"><div class="ai">&#8505;</div><div><strong>Undecidable Problems:</strong> Halting Problem, Post Correspondence Problem, Hilbert's 10th (integer solutions to Diophantine equations).</div></div>
+    </div>
+
+    <div id="u1-strings" class="section">
+      <div class="sec-head"><div class="sec-icon">&#128290;</div><div class="sec-title">Alphabets, Strings &amp; Special Sets</div><span class="badge b-cyan">Unit 1</span></div>
+      <div class="def cy"><div class="def-lbl">Alphabet (&Sigma;)</div>A <strong>finite, non-empty</strong> set of symbols. e.g., &Sigma; = {0,1} or &Sigma; = {a,b,&hellip;,z}.</div>
+      <div class="def"><div class="def-lbl">String</div>A <strong>finite</strong> sequence of symbols from &Sigma;. The <em>empty string</em> &epsilon; has length 0.</div>
+      <div class="g2 mt8">
+        <div class="card"><div class="ctitle">String Operations</div>
+          <div class="tw"><table>
+            <thead><tr><th>Operation</th><th>Example</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Length |w|</strong></td><td>|aab| = 3, |&epsilon;| = 0</td></tr>
+              <tr><td><strong>Concatenation</strong></td><td>ab &middot; cd = abcd; w &middot; &epsilon; = w</td></tr>
+              <tr><td><strong>Exponentiation w&sup2;</strong></td><td>ab&sup2; = abab, w&sup0; = &epsilon;</td></tr>
+              <tr><td><strong>Reversal w&ordf;</strong></td><td>(abc)&ordf; = cba</td></tr>
+              <tr><td><strong>&Sigma;k</strong></td><td>All strings of length exactly k; |&Sigma;k| = |&Sigma;|^k</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+        <div class="card"><div class="ctitle">&Sigma;* and &Sigma;+</div>
+          <div class="def am"><div class="def-lbl">Kleene Closure &Sigma;*</div>&Sigma;* = &Sigma;&sup0; &cup; &Sigma;&sup1; &cup; &Sigma;&sup2; &cup; &hellip; = ALL strings (including &epsilon;)<br>|&Sigma;*| = &infin; always</div>
+          <div class="def gr" style="margin-top:8px"><div class="def-lbl">Positive Closure &Sigma;+</div>&Sigma;+ = &Sigma;* &minus; {&epsilon;} = all non-empty strings<br>&Sigma;+ = &Sigma;&sup1; &cup; &Sigma;&sup2; &cup; &hellip;</div>
+          <p class="mt8" style="font-size:13px"><code>|&Sigma;k| = |&Sigma;|^k</code> &nbsp;|&nbsp; Powerset |2^S| = 2^|S|</p>
+        </div>
+      </div>
+      <div class="alert warn"><div class="ai">&#9888;</div><div><strong>Traps:</strong> &Sigma;&sup0; = {&epsilon;} (NOT &empty;). Also, &empty;* = {&epsilon;} &mdash; Kleene star of empty language is {&epsilon;}, not &empty;.</div></div>
+    </div>
+
+    <div id="u1-langs" class="section">
+      <div class="sec-head"><div class="sec-icon">&#127760;</div><div class="sec-title">Languages &amp; Operations</div><span class="badge b-cyan">Unit 1</span></div>
+      <div class="def cy"><div class="def-lbl">Formal Language</div>Any subset L &sube; &Sigma;*. Can be finite or infinite. A &quot;problem&quot; = deciding membership w &isin; L.</div>
+      <div class="tw mt8"><table>
+        <thead><tr><th>Operation</th><th>Definition</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Union</strong></td><td>L1 &cup; L2 = {x | x &isin; L1 OR x &isin; L2}</td></tr>
+          <tr><td><strong>Intersection</strong></td><td>L1 &cap; L2 = {x | x &isin; L1 AND x &isin; L2}</td></tr>
+          <tr><td><strong>Complement</strong></td><td>L-bar = &Sigma;* &minus; L</td></tr>
+          <tr><td><strong>Concatenation</strong></td><td>L1 &middot; L2 = {xy | x &isin; L1, y &isin; L2}</td></tr>
+          <tr><td><strong>Kleene Star L*</strong></td><td>L&sup0; &cup; L&sup1; &cup; L&sup2; &cup; &hellip; (zero or more concatenations)</td></tr>
+          <tr><td><strong>Reverse L&ordf;</strong></td><td>{w&ordf; | w &isin; L}</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div id="u1-math" class="section">
+      <div class="sec-head"><div class="sec-icon">&#128207;</div><div class="sec-title">Mathematical Prerequisites</div><span class="badge b-cyan">Unit 1</span></div>
+      <div class="g2">
+        <div class="card"><div class="ctitle">Set Theory</div>
+          <ul><li>Powerset 2^S: all subsets of S; |2^S| = 2^|S|</li><li>Relations on A (|A|=n): 2^(n&sup2;) possible</li><li>Complement: A-bar = U &minus; A (relative to universal set U)</li></ul>
+        </div>
+        <div class="card"><div class="ctitle">Relations &amp; Functions</div>
+          <ul><li>Binary relation R &sube; A &times; B</li><li>Inverse: R&minus;&sup1; = {(b,a) | (a,b) &isin; R}</li><li>Composition: S&deg;R = {(a,c) | &exist;b: (a,b)&isin;R, (b,c)&isin;S}</li><li>Function: each input has exactly one output</li></ul>
+        </div>
+      </div>
+      <div class="card mt8"><div class="ctitle">Proof Techniques</div>
+        <div class="g2">
+          <div><strong>Mathematical Induction:</strong><br>1. Base case: prove P(n&sub0;)<br>2. Inductive step: P(k) &rarr; P(k+1)</div>
+          <div><strong>Other Methods:</strong><br>&bull; Proof by Contradiction<br>&bull; Contrapositive (&not;Q &rarr; &not;P)<br>&bull; Counter-example (to disprove)</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="sep">
+
+    <div id="u2-dfa" class="section">
+      <div class="sec-head"><div class="sec-icon">&#129302;</div><div class="sec-title">Deterministic Finite Automata (DFA)</div><span class="badge b-ind">Unit 2</span></div>
+      <div class="def"><div class="def-lbl">Formal Definition &mdash; DFA (5-tuple)</div>
+        M = (Q, &Sigma;, &delta;, q&sub0;, F) where:<br>
+        <strong>Q</strong> &mdash; finite set of states &nbsp;|&nbsp; <strong>&Sigma;</strong> &mdash; finite input alphabet<br>
+        <strong>&delta; : Q &times; &Sigma; &rarr; Q</strong> &mdash; total transition function (exactly one next state)<br>
+        <strong>q&sub0; &isin; Q</strong> &mdash; start state &nbsp;|&nbsp; <strong>F &sube; Q</strong> &mdash; set of accepting states
+      </div>
+      <div class="def am mt8"><div class="def-lbl">Extended Transition &delta;-hat</div>
+        &delta;-hat(q, &epsilon;) = q &nbsp;&nbsp; &delta;-hat(q, wa) = &delta;(&delta;-hat(q, w), a)<br>
+        <strong>L(M)</strong> = {w &isin; &Sigma;* | &delta;-hat(q&sub0;, w) &isin; F}
+      </div>
+      <div class="g2 mt8">
+        <div class="card"><div class="ctitle">Even # of 0s over {0,1}</div>
+          <div class="tw"><table><thead><tr><th>State</th><th>0</th><th>1</th><th>Accept?</th></tr></thead>
+          <tbody><tr><td><span class="strt">&rarr; q0</span></td><td>q1</td><td>q0</td><td class="acc">Y</td></tr><tr><td>q1</td><td>q0</td><td>q1</td><td></td></tr></tbody></table></div>
+          <p style="font-size:12.5px;color:var(--text3)">q0=even 0s (accept), q1=odd 0s</p>
+        </div>
+        <div class="card"><div class="ctitle">Strings containing &quot;aa&quot;</div>
+          <div class="tw"><table><thead><tr><th>State</th><th>a</th><th>b</th><th>Accept?</th></tr></thead>
+          <tbody><tr><td><span class="strt">&rarr; q0</span></td><td>q1</td><td>q0</td><td></td></tr><tr><td>q1</td><td>q2</td><td>q0</td><td></td></tr><tr><td>q2</td><td>q2</td><td>q2</td><td class="acc">Y</td></tr></tbody></table></div>
+          <p style="font-size:12.5px;color:var(--text3)">q2 = absorbing accept state</p>
+        </div>
+      </div>
+      <div class="alert tip"><div class="ai">&#128161;</div><div>DFA has <strong>exactly one</strong> transition per state per symbol. No ambiguity. Every DFA is also an NFA (but not vice versa until conversion).</div></div>
+    </div>
+
+    <div id="u2-nfa" class="section">
+      <div class="sec-head"><div class="sec-icon">&#128256;</div><div class="sec-title">NFA &amp; &epsilon;-NFA</div><span class="badge b-ind">Unit 2</span></div>
+      <div class="def"><div class="def-lbl">NFA &mdash; Key Differences</div>
+        &delta; : Q &times; &Sigma; &rarr; <strong>2^Q</strong> (returns a SET of states, possibly &empty;)<br>
+        Accept if <strong>at least one</strong> computation path reaches a final state.
+      </div>
+      <div class="tw mt8"><table>
+        <thead><tr><th>Feature</th><th>DFA</th><th>NFA</th></tr></thead>
+        <tbody>
+          <tr><td>Transitions per symbol</td><td>Exactly 1</td><td>0, 1, or many</td></tr>
+          <tr><td>&delta; return type</td><td>Q</td><td>2^Q</td></tr>
+          <tr><td>&epsilon;-moves</td><td>No</td><td>Yes (in &epsilon;-NFA)</td></tr>
+          <tr><td>Computational power</td><td colspan="2" class="acc">Equal! Both = Regular Languages</td></tr>
+        </tbody>
+      </table></div>
+      <div class="def cy mt8"><div class="def-lbl">&epsilon;-closure</div>
+        &epsilon;-closure(q) = {q} &cup; all states reachable from q via &epsilon;-transitions only.<br>
+        &epsilon;-closure({S}) = union of &epsilon;-closure(q) for all q in S
+      </div>
+      <div class="card mt8"><div class="ctitle">NFA: 3rd symbol from right = 'a'</div>
+        <div class="tw"><table><thead><tr><th>State</th><th>a</th><th>b</th><th>Accept?</th></tr></thead>
+        <tbody>
+          <tr><td><span class="strt">&rarr; q0</span></td><td>{q0,q1}</td><td>{q0}</td><td></td></tr>
+          <tr><td>q1</td><td>{q2}</td><td>{q2}</td><td></td></tr>
+          <tr><td>q2</td><td>{q3}</td><td>{q3}</td><td></td></tr>
+          <tr><td>q3</td><td>&empty;</td><td>&empty;</td><td class="acc">Y</td></tr>
+        </tbody></table></div>
+      </div>
+    </div>
+
+    <div id="u2-convert" class="section">
+      <div class="sec-head"><div class="sec-icon">&#128260;</div><div class="sec-title">NFA &rarr; DFA (Subset Construction)</div><span class="badge b-ind">Unit 2</span></div>
+      <div class="def"><div class="def-lbl">Algorithm</div>
+        Given NFA M=(Q,&Sigma;,&delta;,q&sub0;,F), build DFA N=(Q',&Sigma;,&delta;',q&sub0;',F'):<br>
+        &bull; <strong>q&sub0;'</strong> = &epsilon;-closure({q&sub0;}) &nbsp;|&nbsp; <strong>F'</strong> = all DFA states S where S&cap;F &ne; &empty;<br>
+        &bull; <strong>&delta;'(S,a)</strong> = &epsilon;-closure(&bigcup;{&delta;(q,a) | q &isin; S})
+      </div>
+      <div class="card mt8"><div class="ctitle">Step-by-Step</div>
+        <ol><li>Start state = &epsilon;-closure({q&sub0;})</li><li>For each unprocessed DFA state S and each input a: compute &delta;'(S,a)</li><li>&empty; &rarr; dead/trap state (self-loops, non-accepting)</li><li>Any DFA state containing NFA accept state &rarr; DFA accept state</li><li>Repeat until all states processed</li></ol>
+      </div>
+      <div class="alert warn"><div class="ai">&#9888;</div><div>Worst case: n NFA states &rarr; 2^n DFA states. In practice, usually far fewer reachable states. Only compute <em>reachable</em> states.</div></div>
+      <div class="card mt8"><div class="ctitle">PYP Q5b &mdash; &epsilon;-NFA to DFA Result</div>
+        <div class="tw"><table><thead><tr><th>DFA</th><th>NFA States</th><th>0</th><th>1</th><th>Accept?</th></tr></thead>
+        <tbody>
+          <tr><td><span class="strt">A</span></td><td>{q0,q1,q2}</td><td>B</td><td>C</td><td></td></tr>
+          <tr><td>B</td><td>{q1,q2,q3}</td><td>D</td><td>C</td><td></td></tr>
+          <tr><td>C</td><td>{q1,q2,q4}</td><td>B</td><td>E</td><td></td></tr>
+          <tr><td>D</td><td>{q1,q2,q3,q5,q6,q7}</td><td>D</td><td>F</td><td class="acc">Y</td></tr>
+          <tr><td>E</td><td>{q1,q2,q4,q5,q6,q7}</td><td>G</td><td>E</td><td class="acc">Y</td></tr>
+          <tr><td>F</td><td>{q1,q2,q4,q6,q7}</td><td>G</td><td>E</td><td class="acc">Y</td></tr>
+          <tr><td>G</td><td>{q1,q2,q3,q6,q7}</td><td>D</td><td>F</td><td class="acc">Y</td></tr>
+        </tbody></table></div>
+        <p class="mt8" style="font-size:12.5px;color:var(--text3)">Language: (0+1)*(00+11)(0+1)* &mdash; strings containing &quot;00&quot; or &quot;11&quot;</p>
+      </div>
+    </div>
+
+    <div id="u2-min" class="section">
+      <div class="sec-head"><div class="sec-icon">&#128230;</div><div class="sec-title">DFA Minimization (Mark Algorithm)</div><span class="badge b-ind">Unit 2</span></div>
+      <div class="def"><div class="def-lbl">Distinguishable Pairs</div>
+        p &ne; q (distinguishable) if &exist;w: exactly one of &delta;-hat(p,w), &delta;-hat(q,w) &isin; F<br>
+        p &equiv; q (indistinguishable) if &forall;w: &delta;-hat(p,w) &isin; F &harr; &delta;-hat(q,w) &isin; F
+      </div>
+      <div class="card mt8"><div class="ctitle">Mark Procedure (Table-Filling)</div>
+        <ol>
+          <li><strong>Remove inaccessible states</strong> (unreachable from q&sub0;)</li>
+          <li><strong>Base:</strong> Mark (p,q) if one &isin; F and other &notin; F</li>
+          <li><strong>Iterate:</strong> For each unmarked pair (p,q) and each a &isin; &Sigma;: if (&delta;(p,a), &delta;(q,a)) is marked &rarr; mark (p,q)</li>
+          <li>Repeat step 3 to fixed point</li>
+          <li><strong>Merge</strong> all unmarked (indistinguishable) pairs &rarr; equivalence classes</li>
+        </ol>
+      </div>
+      <div class="card mt8"><div class="ctitle">PYP Q5a &mdash; Minimization Worked Example</div>
+        <div class="tw"><table><thead><tr><th>State</th><th>0</th><th>1</th><th>Accept?</th></tr></thead>
+        <tbody>
+          <tr><td><span class="strt">&rarr; A</span></td><td>B</td><td>D</td><td></td></tr>
+          <tr><td>B</td><td>B</td><td>C</td><td></td></tr>
+          <tr><td>C</td><td>E</td><td>F</td><td></td></tr>
+          <tr><td>D</td><td>E</td><td>F</td><td></td></tr>
+          <tr><td>E</td><td>E</td><td>F</td><td class="acc">Y</td></tr>
+          <tr><td>F</td><td>F</td><td>F</td><td class="acc">Y</td></tr>
+        </tbody></table></div>
+        <div class="def gr mt8"><div class="def-lbl">Result: 3 Equivalence Classes</div>
+          <strong>C &equiv; D</strong> (identical transitions: 0&rarr;E, 1&rarr;F)<br>
+          <strong>E &equiv; F</strong> (both accept, all transitions stay in {E,F})<br>
+          <strong>A &equiv; B</strong> (since C&equiv;D: A:1&rarr;D &equiv; B:1&rarr;C, and A:0&rarr;B &equiv; B:0&rarr;B)
+        </div>
+        <div class="tw mt8"><table><thead><tr><th>Min. State</th><th>0</th><th>1</th><th>Accept?</th></tr></thead>
+        <tbody>
+          <tr><td><span class="strt">&rarr; P={A,B}</span></td><td>P</td><td>Q</td><td></td></tr>
+          <tr><td>Q={C,D}</td><td>R</td><td>R</td><td></td></tr>
+          <tr><td>R={E,F}</td><td>R</td><td>R</td><td class="acc">Y</td></tr>
+        </tbody></table></div>
+        <p class="mt8 tg" style="font-size:13px">6 states &rarr; 3 states minimized</p>
+      </div>
+    </div>
+
+    <div id="u2-mealy" class="section">
+      <div class="sec-head"><div class="sec-icon">&#9881;</div><div class="sec-title">Moore &amp; Mealy Machines</div><span class="badge b-ind">Unit 2</span></div>
+      <div class="tw"><table>
+        <thead><tr><th>Feature</th><th>Moore Machine</th><th>Mealy Machine</th></tr></thead>
+        <tbody>
+          <tr><td>Output depends on</td><td>State only</td><td>State + Input symbol</td></tr>
+          <tr><td>Output function &lambda;</td><td>&lambda; : Q &rarr; &Delta;</td><td>&lambda; : Q &times; &Sigma; &rarr; &Delta;</td></tr>
+          <tr><td>When output produced</td><td>On entering a state</td><td>On each transition (arc)</td></tr>
+          <tr><td>Output length</td><td>|input| + 1</td><td>|input|</td></tr>
+          <tr><td>Diagram notation</td><td>Node label: state/output</td><td>Arc label: input/output</td></tr>
+        </tbody>
+      </table></div>
+      <div class="g2 mt8">
+        <div class="card"><div class="ctitle">Mealy &rarr; Moore Conversion</div>
+          <ol>
+            <li>Find <strong>incoming output</strong> for each state</li>
+            <li>State with multiple different incoming outputs &rarr; <strong>split</strong> into q_z1, q_z2, &hellip;</li>
+            <li>Each split state gets output = the arriving output symbol</li>
+            <li>Redirect transitions to appropriate split state</li>
+          </ol>
+        </div>
+        <div class="card"><div class="ctitle">Moore &rarr; Mealy Conversion</div>
+          <ol>
+            <li>For each arc p &rarr;(a)&rarr; q:</li>
+            <li>Mealy output on arc = Moore output of <strong>destination</strong> q: &lambda;(q)</li>
+            <li>Remove state-based output labels</li>
+            <li>Same number of states, outputs move from states &rarr; arcs</li>
+          </ol>
+        </div>
+      </div>
+      <div class="card mt8"><div class="ctitle">PYP Q6b &mdash; Mealy &rarr; Moore (State Splitting)</div>
+        <p style="font-size:13px;margin-bottom:8px">q3 receives z1 (from q0, q2) AND z2 (from q3 self-loop on 0) &rarr; <strong>split q3 into q3A(z1) and q3B(z2)</strong></p>
+        <div class="tw mt8"><table><thead><tr><th>Moore State</th><th>Output</th><th>On 0</th><th>On 1</th></tr></thead>
+        <tbody>
+          <tr><td><span class="strt">&rarr; q0</span></td><td>z1</td><td>q2</td><td>q3A</td></tr>
+          <tr><td>q2</td><td>z1</td><td>q3A</td><td>q2</td></tr>
+          <tr><td>q3A</td><td>z1</td><td>q3B</td><td>q2</td></tr>
+          <tr><td>q3B</td><td>z2</td><td>q3B</td><td>q2</td></tr>
+        </tbody></table></div>
+      </div>
+    </div>
+
+    <div id="u2-closure" class="section">
+      <div class="sec-head"><div class="sec-icon">&#128274;</div><div class="sec-title">Closure Properties of Regular Languages</div><span class="badge b-ind">Unit 2</span></div>
+      <div class="tw"><table>
+        <thead><tr><th>Operation</th><th>Regular Closed?</th><th>Proof Method</th></tr></thead>
+        <tbody>
+          <tr><td>Union</td><td class="acc">YES</td><td>RE: R1+R2 or NFA construction</td></tr>
+          <tr><td>Concatenation</td><td class="acc">YES</td><td>RE: R1R2</td></tr>
+          <tr><td>Kleene Star</td><td class="acc">YES</td><td>RE: R*</td></tr>
+          <tr><td>Complement</td><td class="acc">YES</td><td>DFA: swap F and Q-F</td></tr>
+          <tr><td>Intersection</td><td class="acc">YES</td><td>Cross-product DFA, or De Morgan's</td></tr>
+          <tr><td>Difference L1-L2</td><td class="acc">YES</td><td>L1 &cap; L2-bar</td></tr>
+          <tr><td>Reverse</td><td class="acc">YES</td><td>Reverse DFA transitions</td></tr>
+        </tbody>
+      </table></div>
+      <div class="card mt8"><div class="ctitle">Cross-Product DFA (Intersection)</div>
+        <p>Given DFA M1, M2 &rarr; Build M with Q = Q1&times;Q2:</p>
+        <ul class="mt8"><li>Start: (q10, q20)</li><li>&delta;((p1,p2),a) = (&delta;1(p1,a), &delta;2(p2,a))</li><li>Intersection: F = F1&times;F2</li><li>Union: F = (F1&times;Q2) &cup; (Q1&times;F2)</li></ul>
+      </div>
+    </div>
+
+    <hr class="sep">
+
+    <div id="u3-def" class="section">
+      <div class="sec-head"><div class="sec-icon">&#10024;</div><div class="sec-title">Regular Expressions &mdash; Definition</div><span class="badge b-pur">Unit 3</span></div>
+      <div class="g2">
+        <div>
+          <div class="def"><div class="def-lbl">Base Cases</div>
+            <strong>&empty;</strong> &mdash; empty language {}<br>
+            <strong>&epsilon;</strong> &mdash; language {&epsilon;}<br>
+            <strong>a</strong> (for all a&isin;&Sigma;) &mdash; language {a}
+          </div>
+          <div class="def am mt8"><div class="def-lbl">Inductive Cases</div>
+            If E, F are REs:<br>
+            <strong>E + F</strong> &rarr; L(E) &cup; L(F) (union)<br>
+            <strong>EF</strong> &rarr; L(E)&middot;L(F) (concatenation)<br>
+            <strong>E*</strong> &rarr; (L(E))* (Kleene star)
+          </div>
+        </div>
+        <div class="card">
+          <div class="ctitle">Operator Precedence</div>
+          <div class="fm">* (star) &gt; concatenation &gt; + (union)</div>
+          <p style="font-size:13px"><code>ab+c</code> means <code>(ab)+c</code>, not <code>a(b+c)</code></p>
+          <div class="def gr mt8"><div class="def-lbl">Shorthand</div>
+            <strong>R+</strong> = RR* (one or more)<br>
+            <strong>R?</strong> = &epsilon;+R (zero or one)<br>
+            <strong>R^n</strong> = R&middot;R&middot;&hellip;&middot;R (n times)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="u3-examples" class="section">
+      <div class="sec-head"><div class="sec-icon">&#128203;</div><div class="sec-title">Regular Expression Examples</div><span class="badge b-pur">Unit 3</span></div>
+      <div class="tw"><table>
+        <thead><tr><th>Regular Expression</th><th>Language Described</th></tr></thead>
+        <tbody>
+          <tr><td><code>01*</code></td><td>Strings: 0, 01, 011, 0111, &hellip;</td></tr>
+          <tr><td><code>(0+1)*</code></td><td>All binary strings including &epsilon;</td></tr>
+          <tr><td><code>(0+1)*00(0+1)*</code></td><td>All strings containing &quot;00&quot;</td></tr>
+          <tr><td><code>(0+1)*011</code></td><td>Strings ending with &quot;011&quot;</td></tr>
+          <tr><td><code>0*1*</code></td><td>All 0s before all 1s (including &epsilon;, 0*, 1*)</td></tr>
+          <tr><td><code>1(0+1)*0</code></td><td>Starts with 1, ends with 0</td></tr>
+          <tr><td><code>(0+1)*1(0+1)(0+1)</code></td><td>3rd symbol from right is 1</td></tr>
+          <tr><td><code>a(aa)*</code></td><td>Odd number of a's</td></tr>
+          <tr><td><code>(aa)*</code></td><td>Even number of a's (including 0)</td></tr>
+          <tr><td><code>(a+ba)*(e+b)</code></td><td>Strings over {a,b} NOT containing &quot;bb&quot;</td></tr>
+          <tr><td><code>(0+1)*010(0+1)*</code></td><td>Contains &quot;010&quot; as substring</td></tr>
+          <tr><td><code>(0+1)*(00+11)(0+1)*</code></td><td>Contains &quot;00&quot; or &quot;11&quot;</td></tr>
+          <tr><td><code>(1*01*01*01*)*</code></td><td>Number of 0s is multiple of 3</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div id="u3-equiv" class="section">
+      <div class="sec-head"><div class="sec-icon">&#9878;</div><div class="sec-title">Equivalence of Regular Expressions</div><span class="badge b-pur">Unit 3</span></div>
+      <div class="def"><div class="def-lbl">Definition</div>R1 &equiv; R2 iff L(R1) = L(R2)</div>
+      <div class="tw mt8"><table>
+        <thead><tr><th>Identity</th><th>Explanation</th></tr></thead>
+        <tbody>
+          <tr><td><code>R + &empty; = R</code></td><td>&empty; is the additive identity</td></tr>
+          <tr><td><code>R&epsilon; = &epsilon;R = R</code></td><td>&epsilon; is the multiplicative identity</td></tr>
+          <tr><td><code>R&empty; = &empty;R = &empty;</code></td><td>&empty; annihilates concatenation</td></tr>
+          <tr><td><code>R** = R*</code></td><td>Star is idempotent</td></tr>
+          <tr><td><code>&epsilon; + RR* = R*</code></td><td>R* = &epsilon; + R+</td></tr>
+          <tr><td><code>(R+S)* = (R*S*)*</code></td><td>Star distributes over union</td></tr>
+          <tr><td><code>R + R = R</code></td><td>Union is idempotent</td></tr>
+          <tr><td><code>(&epsilon;+R)* = R*</code></td><td>Adding &epsilon; under star changes nothing</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div id="u3-fa" class="section">
+      <div class="sec-head"><div class="sec-icon">&#8596;</div><div class="sec-title">RE &harr; Automata Equivalence</div><span class="badge b-pur">Unit 3</span></div>
+      <div class="def gr"><div class="def-lbl">Main Theorem</div>
+        <strong>DFA = NFA = &epsilon;-NFA = Regular Expression</strong><br>
+        All describe exactly the class of <em>Regular Languages</em>
+      </div>
+      <div class="card mt8"><div class="ctitle">Thompson's Construction: RE &rarr; &epsilon;-NFA</div>
+        <div class="cb">Base:   empty -> [s]      epsilon -> [s] -e-> [f]      a -> [s] -a-> [f]
+
+Union (R+S):
+         e->[MR]->e
+[new_s]->             ->[new_f]
+         e->[MS]->e
+
+Concatenation (RS):
+[MR] -e-> [MS]   (connect accept of R to start of S)
+
+Star (R*):
+         e (bypass)
+[ns]-e->[MR]-e->[nf]
+         ^--e--/ (loop back)</div>
+      </div>
+      <div class="def cy mt8"><div class="def-lbl">FA &rarr; RE (State Elimination)</div>
+        1. Add new global start and accept states with &epsilon;-transitions<br>
+        2. Eliminate intermediate states: replace with equivalent RE on remaining arcs<br>
+        3. Final RE = label on arc from global-start to global-accept
+      </div>
+    </div>
+
+    <hr class="sep">
+
+    <div id="pyp" class="section">
+      <div class="sec-head"><div class="sec-icon">&#128196;</div><div class="sec-title">Previous Year Paper T1 &mdash; Full Solutions</div><span class="badge b-amb">16 Marks</span></div>
+
+      <div class="pyq"><div class="pyqh"><span class="pyqn">Q1a &middot; 1M</span><div class="pyqt">Given &Sigma;={x,y,z}. How many different strings of length up to 2 can be formed including &epsilon;?</div></div>
+        <div class="pya"><div class="pyal">Solution</div>
+          Length 0 (e): 1 &nbsp;|&nbsp; Length 1: |&Sigma;|^1 = 3 &nbsp;|&nbsp; Length 2: |&Sigma;|^2 = 9<br>
+          <div class="fm">Total = 1 + 3 + 9 = <strong>13 strings</strong></div>
+        </div>
+      </div>
+
+      <div class="pyq"><div class="pyqh"><span class="pyqn">Q1b &middot; 1M</span><div class="pyqt">Find prefix and suffix of length up to 3 for the string &quot;abaabbab&quot;.</div></div>
+        <div class="pya"><div class="pyal">Solution</div>
+          <strong>Prefixes (len &le; 3):</strong> &epsilon;, a, ab, aba &nbsp;|&nbsp; <strong>Suffixes (len &le; 3):</strong> &epsilon;, b, ab, bab
+        </div>
+      </div>
+
+      <div class="pyq"><div class="pyqh"><span class="pyqn">Q2 &middot; 2M</span><div class="pyqt">L1={&epsilon;}, L2={a}, L3={&empty;}. Compute L1&middot;L2* &cup; L3*.</div></div>
+        <div class="pya"><div class="pyal">Solution</div>
+          L2* = a* &rarr; L1&middot;L2* = {&epsilon;}&middot;a* = a*<br>
+          L3* = &empty;* = {&epsilon;} &nbsp;(Kleene star of empty language)<br>
+          a* &cup; {&epsilon;} = <strong>a*</strong> (&epsilon; &isin; a* already)
+        </div>
+      </div>
+
+      <div class="pyq"><div class="pyqh"><span class="pyqn">Q3 &middot; 2M</span><div class="pyqt">DFA over {a,b}: at least one 'a' AND exactly two 'b's.</div></div>
+        <div class="pya"><div class="pyal">Solution &mdash; 7 States (track b-count &times; has-a)</div>
+          <div class="tw"><table><thead><tr><th>State</th><th>#b</th><th>a seen?</th><th>a</th><th>b</th><th>Accept?</th></tr></thead>
+          <tbody>
+            <tr><td><span class="strt">&rarr; q00</span></td><td>0</td><td>No</td><td>q01</td><td>q10</td><td></td></tr>
+            <tr><td>q01</td><td>0</td><td>Yes</td><td>q01</td><td>q11</td><td></td></tr>
+            <tr><td>q10</td><td>1</td><td>No</td><td>q11</td><td>q20</td><td></td></tr>
+            <tr><td>q11</td><td>1</td><td>Yes</td><td>q11</td><td>q21</td><td></td></tr>
+            <tr><td>q20</td><td>2</td><td>No</td><td>q21</td><td>qd</td><td></td></tr>
+            <tr><td><strong>q21</strong></td><td>2</td><td>Yes</td><td>q21</td><td>qd</td><td class="acc">Y</td></tr>
+            <tr><td>qd</td><td>3+</td><td>&mdash;</td><td>qd</td><td>qd</td><td></td></tr>
+          </tbody></table></div>
+        </div>
+      </div>
+
+      <div class="pyq"><div class="pyqh"><span class="pyqn">Q4 &middot; 2M</span><div class="pyqt">NFA over {a,b}: third symbol from right is 'a'. RE: (a+b)*a(a+b)(a+b)</div></div>
+        <div class="pya"><div class="pyal">Solution &mdash; 4 States</div>
+          <div class="tw"><table><thead><tr><th>State</th><th>a</th><th>b</th><th>Accept?</th></tr></thead>
+          <tbody>
+            <tr><td><span class="strt">&rarr; q0</span></td><td>{q0,q1}</td><td>{q0}</td><td></td></tr>
+            <tr><td>q1</td><td>{q2}</td><td>{q2}</td><td></td></tr>
+            <tr><td>q2</td><td>{q3}</td><td>{q3}</td><td></td></tr>
+            <tr><td>q3</td><td>&empty;</td><td>&empty;</td><td class="acc">Y</td></tr>
+          </tbody></table></div>
+        </div>
+      </div>
+
+      <div class="pyq"><div class="pyqh"><span class="pyqn">Q5a &middot; 4M</span><div class="pyqt">Minimize 6-state DFA: Start=A, Accept={E,F}. A:0&rarr;B,1&rarr;D | B:0&rarr;B,1&rarr;C | C:0&rarr;E,1&rarr;F | D:0&rarr;E,1&rarr;F | E:0&rarr;E,1&rarr;F | F:0&rarr;F,1&rarr;F</div></div>
+        <div class="pya"><div class="pyal">Solution &mdash; Mark Algorithm &rarr; 3 States</div>
+          <strong>C &equiv; D</strong> (both: 0&rarr;E, 1&rarr;F) &nbsp;|&nbsp; <strong>E &equiv; F</strong> (both accept, all&rarr;{E,F}) &nbsp;|&nbsp; <strong>A &equiv; B</strong> (since C&equiv;D)
+          <div class="tw mt8"><table><thead><tr><th>Min. State</th><th>0</th><th>1</th><th>Accept?</th></tr></thead>
+          <tbody>
+            <tr><td><span class="strt">&rarr; P={A,B}</span></td><td>P</td><td>Q</td><td></td></tr>
+            <tr><td>Q={C,D}</td><td>R</td><td>R</td><td></td></tr>
+            <tr><td>R={E,F}</td><td>R</td><td>R</td><td class="acc">Y</td></tr>
+          </tbody></table></div>
+        </div>
+      </div>
+
+      <div class="pyq"><div class="pyqh"><span class="pyqn">Q5b &middot; 4M</span><div class="pyqt">Convert &epsilon;-NFA to DFA. (q0&rarr;&epsilon;&rarr;q1&rarr;&epsilon;&rarr;q2, q1 loops on 0+1, q2:0&rarr;q3/1&rarr;q4, q3:0&rarr;q5, q4:1&rarr;q5, q5&rarr;&epsilon;&rarr;q6&rarr;&epsilon;&rarr;q7, q6 loops on 0+1, q7 accept)</div></div>
+        <div class="pya"><div class="pyal">Solution &mdash; Subset Construction &rarr; 7 DFA States</div>
+          <div class="tw"><table><thead><tr><th>DFA</th><th>NFA States</th><th>0</th><th>1</th><th>Accept?</th></tr></thead>
+          <tbody>
+            <tr><td><span class="strt">A</span></td><td>{q0,q1,q2}</td><td>B</td><td>C</td><td></td></tr>
+            <tr><td>B</td><td>{q1,q2,q3}</td><td>D</td><td>C</td><td></td></tr>
+            <tr><td>C</td><td>{q1,q2,q4}</td><td>B</td><td>E</td><td></td></tr>
+            <tr><td>D</td><td>{q1,q2,q3,q5,q6,q7}</td><td>D</td><td>F</td><td class="acc">Y</td></tr>
+            <tr><td>E</td><td>{q1,q2,q4,q5,q6,q7}</td><td>G</td><td>E</td><td class="acc">Y</td></tr>
+            <tr><td>F</td><td>{q1,q2,q4,q6,q7}</td><td>G</td><td>E</td><td class="acc">Y</td></tr>
+            <tr><td>G</td><td>{q1,q2,q3,q6,q7}</td><td>D</td><td>F</td><td class="acc">Y</td></tr>
+          </tbody></table></div>
+          <p class="mt8" style="font-size:12.5px">Language: (0+1)*(00+11)(0+1)*</p>
+        </div>
+      </div>
+
+      <div class="pyq"><div class="pyqh"><span class="pyqn">Q6a &middot; 2M</span><div class="pyqt">Mealy Machine: output &quot;A&quot; if last two inputs were &quot;10&quot;, &quot;B&quot; if &quot;11&quot;, &quot;C&quot; otherwise.</div></div>
+        <div class="pya"><div class="pyal">Solution &mdash; 2 States</div>
+          <div class="tw"><table><thead><tr><th>State</th><th>Input</th><th>Output</th><th>Next</th></tr></thead>
+          <tbody>
+            <tr><td><span class="strt">&rarr; q0</span></td><td>0</td><td>C</td><td>q0</td></tr>
+            <tr><td>q0</td><td>1</td><td>C</td><td>q1</td></tr>
+            <tr><td>q1 (last=1)</td><td>0</td><td class="ta">A</td><td>q0</td></tr>
+            <tr><td>q1 (last=1)</td><td>1</td><td class="tg">B</td><td>q1</td></tr>
+          </tbody></table></div>
+        </div>
+      </div>
+
+      <div class="pyq"><div class="pyqh"><span class="pyqn">Q6b &middot; 2M</span><div class="pyqt">Convert given Mealy Machine (q0,q2,q3; outputs z1,z2) to Moore Machine.</div></div>
+        <div class="pya"><div class="pyal">Solution &mdash; Split q3 &rarr; q3A(z1) and q3B(z2)</div>
+          <div class="tw"><table><thead><tr><th>Moore State</th><th>&lambda; (Output)</th><th>On 0</th><th>On 1</th></tr></thead>
+          <tbody>
+            <tr><td><span class="strt">&rarr; q0</span></td><td>z1</td><td>q2</td><td>q3A</td></tr>
+            <tr><td>q2</td><td>z1</td><td>q3A</td><td>q2</td></tr>
+            <tr><td>q3A</td><td>z1</td><td>q3B</td><td>q2</td></tr>
+            <tr><td>q3B</td><td>z2</td><td>q3B</td><td>q2</td></tr>
+          </tbody></table></div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="sep">
+
+    <div id="papers" class="section">
+      <div class="sec-head"><div class="sec-icon">&#128221;</div><div class="sec-title">Sample Question Papers (4 &times; 6 Questions)</div><span class="badge b-grn">Practice</span></div>
+      <div class="ptabs">
+        <div class="ptab at" onclick="showPaper(0)">Paper 1</div>
+        <div class="ptab" onclick="showPaper(1)">Paper 2</div>
+        <div class="ptab" onclick="showPaper(2)">Paper 3</div>
+        <div class="ptab" onclick="showPaper(3)">Paper 4</div>
+      </div>
+
+      <!-- PAPER 1 -->
+      <div class="pc show" id="p0">
+        <div class="alert info" style="margin-bottom:16px"><div class="ai">&#128203;</div><div><strong>Paper 1 &mdash; Theory &amp; Construction Focus</strong> | Pattern: 1+1+2+2+4+4 = 14 Marks</div></div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">1a</div><div class="qtxt">Given &Sigma;={0,1,2}, how many strings of length &le; 3 can be formed including &epsilon;?</div><div class="qmeta"><span class="mb2">1 Mark</span><span class="cb2">CO1</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer</div>|&Sigma;|=3. Total = 3^0+3^1+3^2+3^3 = 1+3+9+27 = <strong>40 strings</strong></div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">1b</div><div class="qtxt">List all prefixes and suffixes of length &le; 2 for string &quot;abba&quot;.</div><div class="qmeta"><span class="mb2">1 Mark</span><span class="cb2">CO1</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer</div><strong>Prefixes:</strong> &epsilon;, a, ab &nbsp;|&nbsp; <strong>Suffixes:</strong> &epsilon;, a, ba</div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">2</div><div class="qtxt">For L1={a}, L2={b}, L3={&epsilon;}, compute (L1&cup;L2)* and L1&middot;L2*. State if results are regular.</div><div class="qmeta"><span class="mb2">2 Marks</span><span class="cb2">CO1</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer</div>
+              <strong>(L1&cup;L2)*</strong> = {a,b}* = all strings over {a,b} including &epsilon;. RE: (a+b)*<br>
+              <strong>L1&middot;L2*</strong> = {a}&middot;{&epsilon;,b,bb,&hellip;} = {a,ab,abb,&hellip;} = ab*<br>
+              Both are <strong>regular</strong> languages.
+            </div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">3</div><div class="qtxt">Construct DFA over &Sigma;={0,1} accepting strings with even number of 0s AND even number of 1s.</div><div class="qmeta"><span class="mb2">2 Marks</span><span class="cb2">CO2</span></div></div>
+          <div class="qbody" style="display:none"><p style="font-size:13px;margin-bottom:8px">Hint: 4 states tracking (parity of 0s, parity of 1s)</p><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer &mdash; 4 States</div>
+              <div class="tw"><table><thead><tr><th>State</th><th>#0 even?</th><th>#1 even?</th><th>0</th><th>1</th><th>Accept?</th></tr></thead>
+              <tbody>
+                <tr><td><span class="strt">&rarr; q00</span></td><td>Yes</td><td>Yes</td><td>q10</td><td>q01</td><td class="acc">Y</td></tr>
+                <tr><td>q01</td><td>Yes</td><td>No</td><td>q11</td><td>q00</td><td></td></tr>
+                <tr><td>q10</td><td>No</td><td>Yes</td><td>q00</td><td>q11</td><td></td></tr>
+                <tr><td>q11</td><td>No</td><td>No</td><td>q01</td><td>q10</td><td></td></tr>
+              </tbody></table></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">4</div><div class="qtxt">Construct NFA over &Sigma;={a,b} accepting all strings ending in &quot;ab&quot;. RE: (a+b)*ab</div><div class="qmeta"><span class="mb2">2 Marks</span><span class="cb2">CO2</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer &mdash; 3 States</div>
+              <div class="tw"><table><thead><tr><th>State</th><th>a</th><th>b</th><th>Accept?</th></tr></thead>
+              <tbody>
+                <tr><td><span class="strt">&rarr; q0</span></td><td>{q0,q1}</td><td>{q0}</td><td></td></tr>
+                <tr><td>q1</td><td>&empty;</td><td>{q2}</td><td></td></tr>
+                <tr><td>q2</td><td>&empty;</td><td>&empty;</td><td class="acc">Y</td></tr>
+              </tbody></table></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">5</div><div class="qtxt">Minimize DFA (&Sigma;={0,1}): States {A,B,C,D,E}, Start=A, Accept={D,E}. A:0&rarr;B,1&rarr;C | B:0&rarr;D,1&rarr;A | C:0&rarr;A,1&rarr;D | D:0&rarr;D,1&rarr;E | E:0&rarr;E,1&rarr;D.</div><div class="qmeta"><span class="mb2">4 Marks</span><span class="cb2">CO2</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer</div>
+              Base: mark all (accept, non-accept) pairs.<br>
+              Check (D,E): D:0&rarr;D,E:0&rarr;E (same class); D:1&rarr;E,E:1&rarr;D (same class) &rarr; <strong>D &equiv; E</strong><br>
+              Check (B,C): B:0&rarr;D, C:0&rarr;A &rarr; (D,A) marked &rarr; B &ne; C<br>
+              Minimized 4-state DFA:
+              <div class="tw mt8"><table><thead><tr><th>State</th><th>0</th><th>1</th><th>Accept?</th></tr></thead>
+              <tbody>
+                <tr><td><span class="strt">&rarr; A</span></td><td>B</td><td>C</td><td></td></tr>
+                <tr><td>B</td><td>DE</td><td>A</td><td></td></tr>
+                <tr><td>C</td><td>A</td><td>DE</td><td></td></tr>
+                <tr><td>DE</td><td>DE</td><td>DE</td><td class="acc">Y</td></tr>
+              </tbody></table></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">6</div><div class="qtxt">Design Mealy Machine over {0,1}: outputs '1' if count of 1s seen so far is divisible by 3, else '0'. Then convert to Moore Machine.</div><div class="qmeta"><span class="mb2">4 Marks</span><span class="cb2">CO2</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer &mdash; Mealy (3 States tracking count mod 3)</div>
+              <div class="tw"><table><thead><tr><th>State</th><th>Input</th><th>Output</th><th>Next</th></tr></thead>
+              <tbody>
+                <tr><td><span class="strt">&rarr; q0 (0 mod 3)</span></td><td>0</td><td class="tg">1</td><td>q0</td></tr>
+                <tr><td>q0</td><td>1</td><td>0</td><td>q1</td></tr>
+                <tr><td>q1 (1 mod 3)</td><td>0</td><td>0</td><td>q1</td></tr>
+                <tr><td>q1</td><td>1</td><td>0</td><td>q2</td></tr>
+                <tr><td>q2 (2 mod 3)</td><td>0</td><td>0</td><td>q2</td></tr>
+                <tr><td>q2</td><td>1</td><td class="tg">1</td><td>q0</td></tr>
+              </tbody></table></div>
+              <p class="mt8"><strong>Moore conversion:</strong> q0 receives output 1 (from q2 via '1') and output 0 (self on '0') &rarr; split into q0A(out=1) for when entering from q2, q0B(out=0) for start/self-loop. q1, q2 always receive out=0.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAPER 2 -->
+      <div class="pc" id="p1">
+        <div class="alert info" style="margin-bottom:16px"><div class="ai">&#128203;</div><div><strong>Paper 2 &mdash; NFA, &epsilon;-NFA &amp; Language Operations</strong> | 14 Marks</div></div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">1a</div><div class="qtxt">State the formal definition of a DFA. What does L(M) denote?</div><div class="qmeta"><span class="mb2">1 Mark</span><span class="cb2">CO1</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer</div>
+              DFA M = (Q, &Sigma;, &delta;, q0, F). &delta;:Q&times;&Sigma;&rarr;Q. L(M) = {w &isin; &Sigma;* | &delta;-hat(q0,w) &isin; F}.
+            </div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">1b</div><div class="qtxt">For &epsilon;-NFA: q0&rarr;&epsilon;&rarr;q1, q1&rarr;&epsilon;&rarr;q2, q2&rarr;&epsilon;&rarr;q3. Find &epsilon;-closure of each state. Which states accept if F={q3}?</div><div class="qmeta"><span class="mb2">1 Mark</span><span class="cb2">CO1</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer</div>
+              &epsilon;-cl(q0)={q0,q1,q2,q3}, &epsilon;-cl(q1)={q1,q2,q3}, &epsilon;-cl(q2)={q2,q3}, &epsilon;-cl(q3)={q3}<br>
+              All DFA start states contain q3 &rarr; <strong>all are accepting</strong> (language = &Sigma;*)
+            </div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">2</div><div class="qtxt">For L1=(0+1)*, L2={00,11}. Compute L1&middot;L2 and L2*. Describe each in words.</div><div class="qmeta"><span class="mb2">2 Marks</span><span class="cb2">CO1</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer</div>
+              <strong>L1&middot;L2</strong> = all binary strings ending with &quot;00&quot; or &quot;11&quot;<br>
+              <strong>L2*</strong> = {&epsilon;, 00, 11, 0000, 0011, 1100, 1111, &hellip;} = strings made of zero or more &quot;00&quot;/&quot;11&quot; blocks (always even length)
+            </div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">3</div><div class="qtxt">Construct DFA over &Sigma;={a,b,c} accepting strings containing exactly two 'c's (any number of a's and b's).</div><div class="qmeta"><span class="mb2">2 Marks</span><span class="cb2">CO2</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer &mdash; 4 States</div>
+              <div class="tw"><table><thead><tr><th>State</th><th>a,b</th><th>c</th><th>Accept?</th></tr></thead>
+              <tbody>
+                <tr><td><span class="strt">&rarr; q0 (0 c's)</span></td><td>q0</td><td>q1</td><td></td></tr>
+                <tr><td>q1 (1 c)</td><td>q1</td><td>q2</td><td></td></tr>
+                <tr><td>q2 (2 c's)</td><td>q2</td><td>qd</td><td class="acc">Y</td></tr>
+                <tr><td>qd (3+ c's)</td><td>qd</td><td>qd</td><td></td></tr>
+              </tbody></table></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">4</div><div class="qtxt">Construct NFA over &Sigma;={0,1} accepting strings where second-to-last symbol is '1'. RE: (0+1)*1(0+1)</div><div class="qmeta"><span class="mb2">2 Marks</span><span class="cb2">CO2</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer &mdash; 3 States</div>
+              <div class="tw"><table><thead><tr><th>State</th><th>0</th><th>1</th><th>Accept?</th></tr></thead>
+              <tbody>
+                <tr><td><span class="strt">&rarr; q0</span></td><td>{q0}</td><td>{q0,q1}</td><td></td></tr>
+                <tr><td>q1</td><td>{q2}</td><td>{q2}</td><td></td></tr>
+                <tr><td>q2</td><td>&empty;</td><td>&empty;</td><td class="acc">Y</td></tr>
+              </tbody></table></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">5</div><div class="qtxt">Convert &epsilon;-NFA to DFA: {q0,q1,q2,q3}. q0&rarr;&epsilon;&rarr;q2. q0:0&rarr;q1. q1:1&rarr;q3. q2:0&rarr;q3. q3:0,1&rarr;q3 (accept). &Sigma;={0,1}.</div><div class="qmeta"><span class="mb2">4 Marks</span><span class="cb2">CO2</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer</div>
+              &epsilon;-closures: &epsilon;-cl(q0)={q0,q2}, others={self}<br>
+              DFA Start A = {q0,q2}:
+              <div class="tw mt8"><table><thead><tr><th>DFA</th><th>NFA States</th><th>0</th><th>1</th><th>Accept?</th></tr></thead>
+              <tbody>
+                <tr><td><span class="strt">A</span></td><td>{q0,q2}</td><td>B</td><td>&empty;</td><td></td></tr>
+                <tr><td>B</td><td>{q1,q3}</td><td>C</td><td>C</td><td class="acc">Y</td></tr>
+                <tr><td>C</td><td>{q3}</td><td>C</td><td>C</td><td class="acc">Y</td></tr>
+                <tr><td>&empty;</td><td>{}</td><td>&empty;</td><td>&empty;</td><td></td></tr>
+              </tbody></table></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">6</div><div class="qtxt">Convert Moore Machine to Mealy: States {A/0, B/1, C/0, D/1}. Start=A. A:0&rarr;B,1&rarr;C | B:0&rarr;D,1&rarr;A | C:0&rarr;A,1&rarr;D | D:0&rarr;C,1&rarr;B.</div><div class="qmeta"><span class="mb2">4 Marks</span><span class="cb2">CO2</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer &mdash; Mealy output = &lambda;(destination)</div>
+              <div class="tw"><table><thead><tr><th>State</th><th>Input</th><th>Output</th><th>Next</th></tr></thead>
+              <tbody>
+                <tr><td><span class="strt">&rarr; A</span></td><td>0</td><td class="tg">&lambda;(B)=1</td><td>B</td></tr>
+                <tr><td>A</td><td>1</td><td>&lambda;(C)=0</td><td>C</td></tr>
+                <tr><td>B</td><td>0</td><td class="ta">&lambda;(D)=1</td><td>D</td></tr>
+                <tr><td>B</td><td>1</td><td>&lambda;(A)=0</td><td>A</td></tr>
+                <tr><td>C</td><td>0</td><td>&lambda;(A)=0</td><td>A</td></tr>
+                <tr><td>C</td><td>1</td><td class="ta">&lambda;(D)=1</td><td>D</td></tr>
+                <tr><td>D</td><td>0</td><td>&lambda;(C)=0</td><td>C</td></tr>
+                <tr><td>D</td><td>1</td><td class="tg">&lambda;(B)=1</td><td>B</td></tr>
+              </tbody></table></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAPER 3 -->
+      <div class="pc" id="p2">
+        <div class="alert info" style="margin-bottom:16px"><div class="ai">&#128203;</div><div><strong>Paper 3 &mdash; DFA Minimization &amp; Regular Expressions</strong> | 14 Marks</div></div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">1a</div><div class="qtxt">What is the Chomsky Hierarchy? Name the 4 grammar types and corresponding automata.</div><div class="qmeta"><span class="mb2">1 Mark</span><span class="cb2">CO1</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer</div>
+              Type 0 (Unrestricted) &rarr; TM | Type 1 (Context-Sensitive) &rarr; LBA | Type 2 (CFL) &rarr; PDA | Type 3 (Regular) &rarr; FA
+            </div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">1b</div><div class="qtxt">If &Sigma;={0,1}, list all elements of &Sigma;^3 and give |&Sigma;*|.</div><div class="qmeta"><span class="mb2">1 Mark</span><span class="cb2">CO1</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer</div>
+              &Sigma;^3 = {000, 001, 010, 011, 100, 101, 110, 111} (8 strings)<br>
+              |&Sigma;*| = <strong>&infin;</strong> (countably infinite)
+            </div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">2</div><div class="qtxt">Write Regular Expressions for: (a) Strings over {0,1} starting with 1 and ending with 0. (b) Strings over {a} with odd number of a's.</div><div class="qmeta"><span class="mb2">2 Marks</span><span class="cb2">CO1</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer</div>
+              (a) <code>1(0+1)*0</code> &mdash; starts with 1, ends with 0, at least 2 chars<br>
+              (b) <code>a(aa)*</code> &mdash; odd number of a's (1, 3, 5, &hellip;)
+            </div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">3</div><div class="qtxt">Construct DFA over &Sigma;={a,b} accepting all strings NOT containing &quot;aa&quot; as a substring.</div><div class="qmeta"><span class="mb2">2 Marks</span><span class="cb2">CO2</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer &mdash; 3 States</div>
+              <div class="tw"><table><thead><tr><th>State</th><th>Meaning</th><th>a</th><th>b</th><th>Accept?</th></tr></thead>
+              <tbody>
+                <tr><td><span class="strt">&rarr; q0</span></td><td>Start/last=b</td><td>q1</td><td>q0</td><td class="acc">Y</td></tr>
+                <tr><td>q1</td><td>Last=a</td><td>q2</td><td>q0</td><td class="acc">Y</td></tr>
+                <tr><td>q2</td><td>Saw &quot;aa&quot;</td><td>q2</td><td>q2</td><td class="rej">N</td></tr>
+              </tbody></table></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">4</div><div class="qtxt">Construct NFA over &Sigma;={0,1}: 3rd symbol from right is '1'. RE: (0+1)*1(0+1)(0+1)</div><div class="qmeta"><span class="mb2">2 Marks</span><span class="cb2">CO2</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer &mdash; 4 States</div>
+              <div class="tw"><table><thead><tr><th>State</th><th>0</th><th>1</th><th>Accept?</th></tr></thead>
+              <tbody>
+                <tr><td><span class="strt">&rarr; q0</span></td><td>{q0}</td><td>{q0,q1}</td><td></td></tr>
+                <tr><td>q1</td><td>{q2}</td><td>{q2}</td><td></td></tr>
+                <tr><td>q2</td><td>{q3}</td><td>{q3}</td><td></td></tr>
+                <tr><td>q3</td><td>&empty;</td><td>&empty;</td><td class="acc">Y</td></tr>
+              </tbody></table></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">5</div><div class="qtxt">Minimize DFA (&Sigma;={0,1}): {A,B,C,D,E,F}, Start=A, Accept={C,F}. A:0&rarr;B,1&rarr;D | B:0&rarr;C,1&rarr;E | C:0&rarr;C,1&rarr;C | D:0&rarr;E,1&rarr;B | E:0&rarr;F,1&rarr;A | F:0&rarr;F,1&rarr;F</div><div class="qmeta"><span class="mb2">4 Marks</span><span class="cb2">CO2</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer</div>
+              Check (C,F): C:0&rarr;C(acc), F:0&rarr;F(acc); C:1&rarr;C(acc), F:1&rarr;F(acc) &rarr; <strong>C &equiv; F</strong><br>
+              All other non-accepting states are distinct (verify by checking transitions lead to differently-distinguished states).<br>
+              <strong>5-state minimized DFA:</strong>
+              <div class="tw mt8"><table><thead><tr><th>State</th><th>0</th><th>1</th><th>Accept?</th></tr></thead>
+              <tbody>
+                <tr><td><span class="strt">&rarr; A</span></td><td>B</td><td>D</td><td></td></tr>
+                <tr><td>B</td><td>CF</td><td>E</td><td></td></tr>
+                <tr><td>D</td><td>E</td><td>B</td><td></td></tr>
+                <tr><td>E</td><td>CF</td><td>A</td><td></td></tr>
+                <tr><td>CF</td><td>CF</td><td>CF</td><td class="acc">Y</td></tr>
+              </tbody></table></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">6</div><div class="qtxt">Prove: Regular languages are closed under (a) Complement and (b) Intersection. Provide formal proof and example for each.</div><div class="qmeta"><span class="mb2">4 Marks</span><span class="cb2">CO2</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer</div>
+              <strong>(a) Complement:</strong> Let L = L(M) for DFA M=(Q,&Sigma;,&delta;,q0,F). Build M'=(Q,&Sigma;,&delta;,q0,Q-F). L(M') = &Sigma;*-L = L-bar. Regular. &checkmark;<br>
+              Ex: L={even-length} &rarr; L-bar={odd-length}. Both regular.<br><br>
+              <strong>(b) Intersection (Cross-product):</strong> M=(Q1&times;Q2, &Sigma;, &delta;, (q01,q02), F1&times;F2) where &delta;((p,q),a)=(&delta;1(p,a),&delta;2(q,a)). L(M) = L1&cap;L2. Regular. &checkmark;<br>
+              Alternatively: L1&cap;L2 = complement(L1-bar &cup; L2-bar) &mdash; closed under complement &amp; union.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAPER 4 -->
+      <div class="pc" id="p3">
+        <div class="alert info" style="margin-bottom:16px"><div class="ai">&#128203;</div><div><strong>Paper 4 &mdash; Comprehensive / Hardest</strong> | 14 Marks</div></div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">1a</div><div class="qtxt">What is a Regular Language? Give 2 examples and 2 non-examples with justification.</div><div class="qmeta"><span class="mb2">1 Mark</span><span class="cb2">CO1</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer</div>
+              A regular language is recognized by a Finite Automaton (equiv: described by RE).<br>
+              <strong>Examples:</strong> {w | w contains &quot;00&quot;}; {w | |w| is even}<br>
+              <strong>Non-examples:</strong> {a^n b^n | n&ge;0} (needs counting); {ww | w &isin; {a,b}*} (needs memory beyond FA)
+            </div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">1b</div><div class="qtxt">For string w=&quot;baabb&quot;, find its reversal and list all substrings of length exactly 2.</div><div class="qmeta"><span class="mb2">1 Mark</span><span class="cb2">CO1</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer</div>
+              <strong>Reversal:</strong> w^R = &quot;bbaab&quot;<br>
+              <strong>Substrings of length 2:</strong> ba, aa, ab, bb (unique set: {ba, aa, ab, bb})
+            </div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">2</div><div class="qtxt">Write RE and give DFA for: L = all strings over {a,b} that do NOT contain &quot;bb&quot;.</div><div class="qmeta"><span class="mb2">2 Marks</span><span class="cb2">CO1</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer</div>
+              <strong>RE:</strong> <code>(a + ba)*(e + b)</code> (e = &epsilon;)<br>
+              <div class="tw mt8"><table><thead><tr><th>State</th><th>a</th><th>b</th><th>Accept?</th></tr></thead>
+              <tbody>
+                <tr><td><span class="strt">&rarr; q0</span></td><td>q0</td><td>q1</td><td class="acc">Y</td></tr>
+                <tr><td>q1 (last=b)</td><td>q0</td><td>q2</td><td class="acc">Y</td></tr>
+                <tr><td>q2 (saw &quot;bb&quot;)</td><td>q2</td><td>q2</td><td class="rej">N</td></tr>
+              </tbody></table></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">3</div><div class="qtxt">Construct DFA over &Sigma;={0,1} accepting all strings containing &quot;010&quot; as a substring. RE: (0+1)*010(0+1)*</div><div class="qmeta"><span class="mb2">2 Marks</span><span class="cb2">CO2</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer &mdash; 4 States</div>
+              <div class="tw"><table><thead><tr><th>State</th><th>Meaning</th><th>0</th><th>1</th><th>Accept?</th></tr></thead>
+              <tbody>
+                <tr><td><span class="strt">&rarr; q0</span></td><td>Start</td><td>q1</td><td>q0</td><td></td></tr>
+                <tr><td>q1</td><td>Saw &quot;0&quot;</td><td>q1</td><td>q2</td><td></td></tr>
+                <tr><td>q2</td><td>Saw &quot;01&quot;</td><td>q3</td><td>q0</td><td></td></tr>
+                <tr><td>q3</td><td>Saw &quot;010&quot;</td><td>q3</td><td>q3</td><td class="acc">Y</td></tr>
+              </tbody></table></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">4</div><div class="qtxt">Convert &epsilon;-NFA to DFA then minimize: {q0,q1,q2}, Start=q0, Accept={q2}. q0&rarr;&epsilon;&rarr;q1. q0:a&rarr;q0. q1:a&rarr;q2. q2:a,b&rarr;q2. &Sigma;={a,b}.</div><div class="qmeta"><span class="mb2">2 Marks</span><span class="cb2">CO2</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer</div>
+              &epsilon;-cl(q0)={q0,q1}. DFA Start A={q0,q1}.<br>
+              A:a&rarr;&epsilon;-cl({q0,q2})={q0,q1,q2}=B; A:b&rarr;&empty;<br>
+              B:a&rarr;B; B:b&rarr;&epsilon;-cl({q2})={q2}=C<br>
+              <div class="tw mt8"><table><thead><tr><th>DFA</th><th>a</th><th>b</th><th>Accept?</th></tr></thead>
+              <tbody>
+                <tr><td><span class="strt">A={q0,q1}</span></td><td>B</td><td>&empty;</td><td></td></tr>
+                <tr><td>B={q0,q1,q2}</td><td>B</td><td>C</td><td class="acc">Y</td></tr>
+                <tr><td>C={q2}</td><td>C</td><td>C</td><td class="acc">Y</td></tr>
+                <tr><td>&empty;</td><td>&empty;</td><td>&empty;</td><td></td></tr>
+              </tbody></table></div>
+              <strong>Minimization:</strong> (B,C): B:a&rarr;B,C:a&rarr;C (both acc); B:b&rarr;C,C:b&rarr;C &rarr; <strong>B &equiv; C</strong>. Minimized to 3 states: A, BC, &empty;.<br>
+              Language: strings with at least one 'a'. RE: (a+b)*a(a+b)*
+            </div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">5</div><div class="qtxt">Design Moore Machine over &Sigma;={0,1}: output = remainder when binary string read so far is divided by 3. Convert to Mealy Machine.</div><div class="qmeta"><span class="mb2">4 Marks</span><span class="cb2">CO2</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer &mdash; Moore (3 States, new_val = (2&times;old+bit) mod 3)</div>
+              <div class="tw"><table><thead><tr><th>State (rem)</th><th>Output</th><th>On 0</th><th>On 1</th></tr></thead>
+              <tbody>
+                <tr><td><span class="strt">&rarr; q0</span></td><td>0</td><td>q0</td><td>q1</td></tr>
+                <tr><td>q1</td><td>1</td><td>q2</td><td>q0</td></tr>
+                <tr><td>q2</td><td>2</td><td>q1</td><td>q2</td></tr>
+              </tbody></table></div>
+              <em style="font-size:13px">Check: &quot;110&quot;(=6): q0&rarr;q1&rarr;q0&rarr;q0. Output at q0=0. 6 mod 3=0 &#10003;</em><br><br>
+              <strong>Mealy (output = &lambda; of destination):</strong>
+              <div class="tw mt8"><table><thead><tr><th>State</th><th>Input</th><th>Output</th><th>Next</th></tr></thead>
+              <tbody>
+                <tr><td><span class="strt">&rarr; q0</span></td><td>0</td><td class="tg">0</td><td>q0</td></tr>
+                <tr><td>q0</td><td>1</td><td>1</td><td>q1</td></tr>
+                <tr><td>q1</td><td>0</td><td class="ta">2</td><td>q2</td></tr>
+                <tr><td>q1</td><td>1</td><td class="tg">0</td><td>q0</td></tr>
+                <tr><td>q2</td><td>0</td><td>1</td><td>q1</td></tr>
+                <tr><td>q2</td><td>1</td><td class="ta">2</td><td>q2</td></tr>
+              </tbody></table></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="qcard">
+          <div class="qhdr" onclick="toggleQ(this)"><div class="qnum">6</div><div class="qtxt">Minimize DFA (&Sigma;={a,b}): {q0,q1,q2,q3,q4}, Start=q0, Accept={q1,q3}. q0:a&rarr;q1,b&rarr;q3 | q1:a&rarr;q2,b&rarr;q1 | q2:a&rarr;q2,b&rarr;q4 | q3:a&rarr;q3,b&rarr;q2 | q4:a&rarr;q4,b&rarr;q4</div><div class="qmeta"><span class="mb2">4 Marks</span><span class="cb2">CO2</span></div></div>
+          <div class="qbody" style="display:none"><button class="tbtn" onclick="toggleAns(this)">Show Answer</button>
+            <div class="qans" style="display:none"><div class="qans-lbl">Answer</div>
+              <strong>Base mark:</strong> (q0,q1),(q0,q3),(q2,q1),(q2,q3),(q4,q1),(q4,q3)<br>
+              <strong>Check (q1,q3):</strong> q1:a&rarr;q2, q3:a&rarr;q3 &rarr; (q2,q3) marked &rarr; mark (q1,q3)<br>
+              <strong>Check (q0,q2):</strong> q0:a&rarr;q1(acc), q2:a&rarr;q2(non-acc) &rarr; (q1,q2) marked &rarr; mark (q0,q2)<br>
+              <strong>Check (q0,q4):</strong> q0:a&rarr;q1(acc), q4:a&rarr;q4(non-acc) &rarr; marked<br>
+              <strong>Check (q2,q4):</strong> q2:a&rarr;q2, q4:a&rarr;q4 &rarr; (q2,q4) status? q2:b&rarr;q4, q4:b&rarr;q4 &rarr; (q4,q4) = same &rarr; not marked. q2:a&rarr;q2, q4:a&rarr;q4 &rarr; (q2,q4) &rarr; checking... no direct distinguish &rarr; <strong>q2 &equiv; q4</strong><br>
+              Minimized 4-state DFA:
+              <div class="tw mt8"><table><thead><tr><th>State</th><th>a</th><th>b</th><th>Accept?</th></tr></thead>
+              <tbody>
+                <tr><td><span class="strt">&rarr; q0</span></td><td>q1</td><td>q3</td><td></td></tr>
+                <tr><td>q1</td><td>q24</td><td>q1</td><td class="acc">Y</td></tr>
+                <tr><td>q3</td><td>q3</td><td>q24</td><td class="acc">Y</td></tr>
+                <tr><td>q24</td><td>q24</td><td>q24</td><td></td></tr>
+              </tbody></table></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end papers -->
+
+  </div><!-- content -->
+</div><!-- main -->
+
+<script>
+function setActive(el){
+  document.querySelectorAll('.nav-item').forEach(function(i){i.classList.remove('active');});
+  el.classList.add('active');
+}
+
+function showPaper(i){
+  document.querySelectorAll('.pc').forEach(function(p,j){p.classList.toggle('show',j===i);});
+  document.querySelectorAll('.ptab').forEach(function(t,j){t.classList.toggle('at',j===i);});
+}
+
+function toggleQ(hdr){
+  var b=hdr.nextElementSibling;
+  if(b) b.style.display=(b.style.display==='none'||!b.style.display)?'block':'none';
+}
+
+function toggleAns(btn){
+  var a=btn.nextElementSibling;
+  if(!a) return;
+  var v=a.style.display==='block';
+  a.style.display=v?'none':'block';
+  btn.textContent=v?'Show Answer':'Hide Answer';
+}
+
+var secs=document.querySelectorAll('.section[id]');
+var navs=document.querySelectorAll('.nav-item[href]');
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      var id='#'+e.target.id;
+      navs.forEach(function(n){n.classList.toggle('active',n.getAttribute('href')===id);});
+    }
+  });
+},{threshold:0.15,rootMargin:'-70px 0px -65% 0px'});
+secs.forEach(function(s){obs.observe(s);});
+</script>
+</body>
+</html>

@@ -1,0 +1,535 @@
+1 Closure Properties
+
+Closure Properties
+
+• Recall that we can carry out operations on one or more languages to obtain a new language
+
+• Very useful in studying the properties of one language by relating it to other (better under-
+
+stood) languages
+
+• Most useful when the operations are sophisticated, yet are guaranteed to preserve interesting
+
+properties of the language.
+
+• Today: A variety of operations which preserve regularity
+
+– i.e., the universe of regular languages is closed under these operations
+
+Closure Properties
+
+Deﬁnition 1. Regular Languages are closed under an operation op on languages if
+
+L1, L2, . . . Ln regular =⇒ L = op(L1, L2, . . . Ln) is regular
+
+Example 2. Regular languages are closed under
+
+• “halving”, i.e., L regular =⇒ 1
+
+2 L regular.
+
+• “reversing”, i.e., L regular =⇒ Lrev regular.
+
+1.1 Boolean Operators
+
+Operations from Regular Expressions
+
+Proposition 3. Regular Languages are closed under ∪, ◦ and ∗.
+
+Proof. (Summarizing previous arguments.)
+
+• L1, L2 regular =⇒ ∃ regexes R1, R2 s.t. L1 = L(R1) and L2 = L(R2).
+
+– =⇒ L1 ∪ L2 = L(R1 ∪ R2) =⇒ L1 ∪ L2 regular.
+– =⇒ L1 ◦ L2 = L(R1 ◦ R2) =⇒ L1 ◦ L2 regular.
+– =⇒ L∗
+
+1) =⇒ L∗
+
+1 = L(R∗
+
+1 regular.
+
+Closure Under Complementation
+
+2
+
+Proposition 4. Regular Languages are closed under complementation, i.e., if L is regular then
+L = Σ∗ \ L is also regular.
+
+Proof.
+
+• If L is regular, then there is a DFA M = (Q, Σ, δ, q0, F ) such that L = L(M ).
+
+• Then, M = (Q, Σ, δ, q0, Q \ F ) (i.e., switch accept and non-accept states) accepts L.
+
+What happens if M (above) was an NFA?
+
+Closure under ∩
+
+Proposition 5. Regular Languages are closed under intersection, i.e., if L1 and L2 are regular
+then L1 ∩ L2 is also regular.
+
+Proof. Observe that L1 ∩ L2 = L1 ∪ L2. Since regular languages are closed under union and
+complementation, we have
+
+• L1 and L2 are regular
+
+• L1 ∪ L2 is regular
+
+• Hence, L1 ∩ L2 = L1 ∪ L2 is regular.
+
+Is there a direct proof for intersection (yielding a smaller DFA)?
+
+Cross-Product Construction
+Let M1 = (Q1, Σ, δ1, q1, F1) and M2 = (Q2, Σ, δ2, q2, F2) be DFAs recognizing L1 and L2, respec-
+tively.
+
+Idea: Run M1 and M2 in parallel on the same input and accept if both M1 and M2 accept.
+
+Consider M = (Q, Σ, δ, q0, F ) deﬁned as follows
+
+• Q = Q1 × Q2
+
+• q0 = (cid:104)q1, q2(cid:105)
+
+• δ((cid:104)p1, p2(cid:105), a) = (cid:104)δ1(p1, a), δ2(p2, a)(cid:105)
+
+• F = F1 × F2
+
+M accepts L1 ∩ L2 (exercise)
+What happens if M1 and M2 where NFAs? Still works! Set δ((cid:104)p1, p2(cid:105), a) = δ1(p1, a) × δ2(p2, a).
+
+An Example
+
+3
+
+1
+
+q0
+0
+
+0
+
+0
+
+×
+
+q0
+1
+
+1
+
+0
+
+q1
+0
+
+0
+
+q1
+1
+
+1
+
+1
+
+q00
+
+=
+
+0
+
+0
+
+q10
+
+1
+
+1
+
+1
+
+1
+
+q01
+
+0
+
+0
+
+q11
+
+1.2 Homomorphisms
+
+Homomorphism
+
+Deﬁnition 6. A homomorphism is function h : Σ∗ → ∆∗ deﬁned as follows:
+
+• h((cid:15)) = (cid:15) and for a ∈ Σ, h(a) is any string in ∆∗
+
+• For a = a1a2 . . . an ∈ Σ∗ (n ≥ 2), h(a) = h(a1)h(a2) . . . h(an).
+
+• A homomorphism h maps a string a ∈ Σ∗ to a string in ∆∗ by mapping each character of a
+
+to a string h(a) ∈ ∆∗
+
+• A homomorphism is a function from strings to strings that “respects” concatenation: for any
+
+x, y ∈ Σ∗, h(xy) = h(x)h(y). (Any such function is a homomorphism.)
+
+Example 7. h : {0, 1} → {a, b}∗ where h(0) = ab and h(1) = ba. Then h(0011) = ababbaba
+
+Homomorphism as an Operation on Languages
+
+Deﬁnition 8. Given a homomorphism h : Σ∗ → ∆∗ and a language L ⊆ Σ∗, deﬁne h(L) =
+{h(w) | w ∈ L} ⊆ ∆∗.
+
+Example 9. Let L = {0n1n | n ≥ 0} and h(0) = ab and h(1) = ba. Then h(L) = {(ab)n(ba)n | n ≥ 0}
+
+Exercise: h(L1 ∪ L2) = h(L1) ∪ h(L2). h(L1 ◦ L2) = h(L1) ◦ h(L2), and h(L∗) = h(L)∗.
+
+Closure under Homomorphism
+
+Proposition 10. Regular languages are closed under homomorphism, i.e., if L is a regular language
+and h is a homomorphism, then h(L) is also regular.
+
+4
+
+Proof. We will use the representation of regular languages in terms of regular expressions to argue
+this.
+
+• Deﬁne homomorphism as an operation on regular expressions
+
+• Show that L(h(R)) = h(L(R))
+
+• Let R be such that L = L(R). Let R(cid:48) = h(R). Then h(L) = L(R(cid:48)).
+
+Homomorphism as an Operation on Regular Expressions
+
+Deﬁnition 11. For a regular expression R, let h(R) be the regular expression obtained by replacing
+each occurence of a ∈ Σ in R by the string h(a).
+
+Example 12. If R = (0∪1)∗001(0∪1)∗ and h(0) = ab and h(1) = bc then h(R) = (ab∪bc)∗ababbc(ab∪
+bc)∗
+
+Formally h(R) is deﬁned inductively as follows.
+
+h(∅) = ∅
+h((cid:15)) = (cid:15)
+h(a) = h(a) h(R∗) = (h(R))∗
+
+h(R1R2) = h(R1)h(R2)
+h(R1 ∪ R2) = h(R2) ∪ h(R2)
+
+Proof of Claim
+
+Claim
+For any regular expression R, L(h(R)) = h(L(R)).
+
+Proof. By induction on the number of operations in R
+
+• Base Cases: For R = (cid:15) or ∅, h(R) = R and h(L(R)) = L(R). For R = a, L(R) = {a} and
+
+h(L(R)) = {h(a)} = L(h(a)) = L(h(R)). So claim holds.
+
+• Induction Step: For R = R1 ∪ R2, observe that h(R) = h(R1) ∪ h(R2) and h(L(R)) =
+h(L(R1) ∪ L(R2)) = h(L(R1)) ∪ h(L(R2)). By induction hypothesis, h(L(Ri)) = L(h(Ri))
+and so h(L(R)) = L(h(R1) ∪ h(R2))
+Other cases (R = R1R2 and R = R∗
+
+1) similar.
+
+Nonregularity and Homomorphism
+
+If L is not regular, is h(L) also not regular?
+
+• No! Consider L = {0n1n | n ≥ 0} and h(0) = a and h(1) = (cid:15). Then h(L) = a∗.
+
+Applying a homomorphism can “simplify” a non-regular language into a regular language.
+
+5
+
+1.3 Inverse Homomorphism
+
+Inverse Homomorphism
+
+Deﬁnition 13. Given homomorphism h : Σ∗ → ∆∗ and L ⊆ ∆∗, h−1(L) = {w ∈ Σ∗ | h(w) ∈ L}
+
+h−1(L) consists of strings whose homomorphic images are in L
+
+h
+
+Σ∗
+
+h−1(L)
+
+∆∗
+
+L
+
+Inverse Homomorphism
+
+Example 14. Let Σ = {a, b}, and ∆ = {0, 1}. Let L = (00 ∪ 1)∗ and h(a) = 01 and h(b) = 10.
+
+• h−1(1001) = {ba}, h−1(010110) = {aab}
+
+• h−1(L) = (ba)∗
+
+• What is h(h−1(L))? (1001)∗ (cid:40) L
+
+Note: In general h(h−1(L)) ⊆ L ⊆ h−1(h(L)), but neither containment is necessarily an equal-
+
+ity.
+Closure under Inverse Homomorphism
+
+Proposition 15. Regular languages are closed under inverse homomorphism, i.e., if L is regular
+and h is a homomorphism then h−1(L) is regular.
+
+Proof. We will use the representation of regular languages in terms of DFA to argue this.
+
+Given a DFA M recognizing L, construct an DFA M (cid:48) that accepts h−1(L)
+
+• Intuition: On input w M (cid:48) will run M on h(w) and accept if M does.
+
+Closure under Inverse Homomorphism
+
+6
+
+• Intuition: On input w M (cid:48) will run M on h(w) and accept if M does.
+
+Example 16. L = L ((00 ∪ 1)∗). h(a) = 01, h(b) = 10.
+
+0, 1
+
+q2
+
+0
+
+0
+
+1
+
+q1
+
+0, 1
+
+a, b
+
+q2
+
+b
+0
+
+0
+a
+
+b
+
+1
+
+q1
+
+1
+
+q0
+
+1
+
+a
+
+q0
+
+Closure under Inverse Homomorphism
+Formal Construction
+
+• Let M = (Q, ∆, δ, q0, F ) accept L ⊆ ∆∗ and let h : Σ∗ → ∆∗ be a homomorphism
+
+• Deﬁne M (cid:48) = (Q(cid:48), Σ, δ(cid:48), q(cid:48)
+
+0, F (cid:48)), where
+
+– Q(cid:48) = Q
+– q(cid:48)
+0 = q0
+– F (cid:48) = F , and
+– δ(cid:48)(q, a) = ˆδM (q, h(a)); M (cid:48) on input a simulates M on h(a)
+
+• M (cid:48) accepts h−1(L)
+
+• Because ∀w. ˆδM (cid:48)(q0, w) = ˆδM (q0, h(w))
+
+7
+
+2 Applications of Closure Properties
+
+2.1 Proving Non-Regularity
+
+Proving Non-Regularity
+
+Problem 17. Show that L = {anban | n ≥ 0} is not regular
+
+Proof. Use pumping lemma!
+
+Alternate Proof: If we had an automaton M accepting L then we can construct an automaton
+
+accepting K = {0n1n | n ≥ 0} (“reduction”)
+
+More formally, we will show that by applying a sequence of “regularity preserving” operations
+
+to L we can get K. Then, since K is not regular, L cannot be regular.
+
+Proving Non-Regularity
+Using Closure Properties
+
+Proof (contd). To show that by applying a sequence of “regularity preserving” operations to L =
+{anban | n ≥ 0} we can get K = {0n1n | n ≥ 0}.
+
+• Consider homomorphism h1 : {a, b, c}∗ → {a, b, c}∗ deﬁned as h1(a) = a, h1(b) = b, h1(c) = a.
+
+– L1 = h−1
+
+1 (L) = {(a ∪ c)nb(a ∪ c)n | n ≥ 0}
+
+• Let L2 = L1 ∩ L(a∗bc∗) = {anbcn | n ≥ 0}
+
+• Homomorphism h2 : {a, b, c}∗ → {0, 1}∗ is deﬁned as h2(a) = 0, h2(b) = (cid:15), and h2(c) = 1.
+
+– L3 = h2(L2) = {0n1n | n ≥ 0} = K
+
+• Now if L is regular then so are L1, L2, L3, and K. But K is not regular, and so L is not
+
+regular.
+
+2.2 Proving Regularity
+
+Proving Regularity
+
+Let M = (Q, Σ, δ, q0, F ) be a DFA. Consider
+
+L = {w | M accepts w and M visits every state at least once on input w}
+
+Is L regular?
+
+Note that M does not necessarily accept all strings in L; L ⊆ L(M ).
+By applying a series of regularity preserving operations to L(M ) we will construct L, thus
+
+showing that L is regular
+
+Computations: Valid and Invalid
+
+8
+
+• Consider an alphabet ∆ consisting of [paq] where p, q ∈ Q, a ∈ Σ and δ(p, a) = q. So symbols
+
+of ∆ represent transitions of M .
+
+• Let h : ∆ → Σ∗ be a homomorphism such that h([paq]) = a
+
+• L1 = h−1(L(M )); L1 contains strings of L(M ) where each symbol is associated with a pair
+
+of states that represent some transition
+
+– Some strings of L1 represent valid computations of M . But there are also other strings
+
+in L1 which do not correspond to valid computations of M
+
+• We will ﬁrst remove all the strings from L1 that correspond to invalid computations, and
+
+then remove those that do not visit every state at least once.
+
+Only Valid Computations
+Strings of ∆∗ that represent valid computations of M satisfy the following conditions
+
+• The ﬁrst state in the ﬁrst symbol must be q0
+
+L2 = L1 ∩ (([q0a1q1] ∪ [q0a2q2] ∪ · · · ∪ [q0akqk])∆∗)
+
+([q0a1q1], . . . [q0akqk] are all the transitions out of q0 in M )
+
+• The ﬁrst state in one symbol must equal the second state in previous symbol
+
+L3 = L2 \ (∆∗(
+
+(cid:88)
+
+[paq][rbs])∆∗)
+
+q(cid:54)=r
+
+Remove “invalid” sequences from L2. Diﬀerence of two regular languages is regular ( why?).
+So L3 is regular.
+
+• The second state of the last symbol must be in F . Holds trivially because L3 only contains
+
+strings accepted by M
+
+Example continued
+
+So far, regular language L3 = set of strings in ∆∗ that represent valid computations of M .
+
+• Let Eq ⊆ ∆ be the set of symbols where q appears neither as the ﬁrst nor the second state.
+
+Then E∗
+
+q is the set of strings where q never occurs.
+
+• We remove from L3 those strings where some q ∈ Q never occurs
+
+L4 = L3 \ (
+
+E∗
+q )
+
+(cid:91)
+
+q∈Q
+
+• Finally we discard the state components in L4
+
+• Hence, L is regular.
+
+L = h(L4)
+
+9
+
+2.3 In a nutshell . . .
+
+Proving Regularity and Non-Regularity
+Showing that L is not regular
+
+• Use the pumping lemma
+
+• Or, show that from L you can obtain a known non-regular language through regularity pre-
+
+serving operations.
+
+• Note: Non-regular languages are not closed under the operations discussed.
+
+Showing that L is regular
+
+• Construct a DFA or NFA or regular expression recognizing L
+
+• Or, show that L can be obtained from known regular languages L1, L2, . . . Lk through regu-
+
+larity preserving operations
+
+• Note: Do not use pumping lemma to prove regularity!!
+
+A list of Regularity-Preserving Operations
+
+Regular languages are closed under the following operations.
+
+• Regular Expression operations
+
+• Boolean operations: union, intersection, complement
+
+• Homomorphism
+
+• Inverse Homomorphism
+
+(And several other operations...)
+
+10
+
+

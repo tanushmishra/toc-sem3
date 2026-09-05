@@ -1,0 +1,1498 @@
+Unit 1
+Introduction about Automata
+
+What all is required?
+
+Basic 
+Mathematical 
+Background
+
+Rigorous 
+Thinking 
+
+Fundamentals 
+of Discrete 
+Mathematics
+
+A
+p
+p
+r
+o
+a
+c
+h
+
+l
+
+S
+o
+u
+t
+i
+o
+n
+
+i
+
+S
+m
+p
+e
+
+l
+
+Logical 
+Mind
+
+Basics 
+Knowledge 
+of 
+Algorithms
+
+Basic 
+Knowledge 
+of Data 
+Structures
+
+2
+
+ 
+ 
+Applications
+
+• Web Search
+• Crawler
+• Game Theory
+• Text Processing
+• Compiler Design
+• Pattern Recognition
+• Operating System
+• Circuit Design
+
+• Spell Checker
+• Ad hoc mobile 
+networks
+• Robotics
+• AI
+• Routing
+• Computational Biology
+
+3
+
+Fundamental Theme
+
+• What are the capabilities and limitations of 
+computers ?
+
+• What can we do with computers?
+
+• Are there somethings which we cannot do with 
+computers?
+
+4
+
+Are there things we cannot do with 
+computers? 
+
+The halting problem We allow our computers unbounded memory and 
+unbounded time to operate. Given a fixed computer C, consider the 
+following task: decide (maybe, with the help of another computer, C0) for 
+each possible program p for C, whether when we start computer C on 
+program p, it will ever finish the computation?
+
+• Solving integer equations Are there algorithmically unsolvable problems 
+
+about things other than computers? Yes. Consider an equation of the form 
+x^3 = 3y^6 −2x^4 −11. We are interested in finding out whether this 
+equation has any solution in integers. Is there any algorithm to solve all 
+such problems? 
+
+• Post Corespondence problem : Given two lists of words (a1, a2, .., an) and 
+(b1, b2, .., bn), find a sequence of indices so that the concatenated words 
+are equal.  E.g. given the lists (1: a, 2: ab, 3: bba) and (1: baa, 2: aa, 3: bb), 
+the sequence (3, 2, 3, 1) is a solution since bba+ab+bba+a = 
+bb+aa+bb+baa. Is not possible to say whether any such PC solution exits or 
+not under all circumstances
+
+5
+
+Why do we need to study automata?
+
+Automata theory is important because it allows scientists to 
+understand how machines solve problems. An automaton is 
+any machine that uses a specific, repeatable process to 
+convert information into different forms. Modern computers 
+are a common example of an automaton.
+
+What is the 
+use of 
+automata?
+
+Modern applications of automata theory go far 
+beyond compiler techniques or hardware 
+verification. Automata are widely used for modelling 
+and verification of software, distributed systems, 
+real-time systems, or structured data. They have 
+been equipped with features to model time and 
+probabilities as well.
+
+Theory of Automata : definition with real time example
+
+An Automata is used for recognizer called acceptor and as a transducer i.e. a 
+machine with output capability as well. An acceptor automata accepts a set of 
+words or strings and rejects others. The main application of automata is in 
+designing of lexical analyzer, which is an important part of Compiler.
+
+Under the computer science branch the term ‘Automata’ means 
+‘Discrete Automata’ and it is defined as;
+
+The characteristics 
+of automata are 
+as follow;
+
+Input
+
+Output 
+
+States
+
+Output relation
+
+Example of Automata
+
+Sequential 
+machine: 
+
+Vending 
+Machines: 
+
+Traffic 
+Lights: 
+
+Video 
+Games: 
+
+Text Parsing: 
+
+Regular 
+Expression 
+Matching: 
+
+Speech 
+Recognition: 
+
+Computation
+
+CPU Memory
+
+12
+
+Computation
+
+Temporary 
+Memory
+
+Program 
+Memory
+
+CPU
+
+Output 
+Memory
+
+Input 
+Memory
+
+13
+
+Example: Compute 5*x
+
+CPU
+
+Output 
+Memory
+
+Input 
+Memory
+
+Temporary 
+Memory
+
+Program 
+Memory
+
+y=5*x
+
+14
+
+Example: Compute 5*x
+
+Temporary 
+Memory
+
+Output 
+Memory
+
+CPU
+
+Program 
+Memory
+
+y=5*x
+
+Input 
+Memory
+
+x =7
+
+15
+
+Example: Compute 5*x
+
+y=5*7=35
+
+Temporary 
+Memory
+
+Output 
+Memory
+
+CPU
+
+Program 
+Memory
+
+y=5*x
+
+Input 
+Memory
+
+x =7
+
+16
+
+Example: Compute 5*x
+
+y=5*7=35
+
+Temporary 
+Memory
+
+CPU
+
+Program 
+Memory
+
+y=5*x
+
+y =35
+
+Output 
+Memory
+
+Input 
+Memory
+
+x =7
+
+17
+
+Computation
+
+Automata
+
+Temporary 
+Memory
+
+Program 
+Memory
+
+CPU
+
+Output 
+Memory
+
+Input 
+Memory
+
+18
+
+Branches of ToC
+
+Branch
+
+Concerned With
+
+Tool
+
+Automata Theory
+
+Modeling machines and 
+recognizing languages
+
+DFA, NFA, PDA, TM
+
+Computability Theory
+
+What can be computed?
+
+Recursive functions, TMs
+
+Complexity Theory
+
+How efficiently can it be 
+done?
+
+Time/space complexity
+
+Set Theory 
+Introduction
+
+❖ Sets
+❖ Proof Techniques
+❖ Complexities
+❖ Languages
+❖ Grammars
+❖ Automata
+
+7/30/2026
+
+20
+
+ 
+Review of set theory
+
+Can specify a set in two ways:
+   - list of elements:              A = {6, 12, 28}
+   - characteristic property:   B = {x | x is a positive, even integer}
+
+Set membership:  12 ∈ A,  9 ∉ A
+Set inclusion:  A ⊆ B (A is a subset of B)
+ A ⊂ B (A is a proper subset of B)
+
+Set operations:
+    union:          A ∪ {9, 12}  =  {6, 9, 12, 28}
+    intersection: A ∩ {9, 12}  =  {12}
+    difference:    A - {9, 12}  =  {6, 28}
+
+7/30/2026
+
+21
+
+Set theory (continued)
+
+Another set operation, called “taking the complement of a set”,
+assumes a universal set.
+
+Let U = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9} be the universal set.
+Let A = {2, 4, 6, 8}
+Then       = U - A = {0, 1, 3, 5, 7, 9}
+
+The empty set:  ∅ = {}  
+
+7/30/2026
+
+22
+
+Set theory (continued)
+
+The cardinality of a set is the number of 
+elements in a set.
+Let S = {2, 4, 6}
+Then |S| = 3
+
+The powerset of S, represented by 2S, is the set 
+of all subsets of S.
+2S = {{}, {2}, {4}, {6},{2,4}, {2,6}, {4,6}, {2,4,6}}
+
+The number of elements in a powerset is |2S| = 2|S| 
+
+7/30/2026
+
+23
+
+Complexities
+
+Study the limits of computations. What kinds of problems can be 
+solved with a computer? What kinds of problems can be solved 
+efficiently?
+
+Can you write a program in C which can check if another C program 
+will terminate?
+
+7/30/2026
+
+24
+
+Module 2- Relations
+
+Outline - Relations
+
+Domain and Range, Inverse of  Relation, Composition 
+
+of  Relations, Different Types of  Relations; Partial 
+
+Order Relation.
+
+Relations
+•A relationship between elements of two sets A and B, is  set of ordered 
+pairs with their first element taken from A and  their second element taken 
+from B.  Since this is a relation between two sets, it is called a binary 
+relation.
+
+•Definition: Let A and B be sets. A binary relation from A to B is a subset of 
+A×B.
+
+•A  binary relation R is a subset of A×B  (i.e  R ⊆ A×B )
+• The notation aRb to denote that (a, b)∈R and aRb to denote that (a, b)∉R.
+
+27
+
+Example 
+• Let S be a set of students.
+• Let C be a set of courses.
+• Let R = { (s, c) | student s is taking course c}.
+
+• Many students may take the same course.
+• A single student may take many courses.
+
+Example
+
+•When (a, b) belongs to R, a is said to be related to b by R.
+•Example: Let P be a set of people, C be a set of cars, and D be the relation 
+describing which person drives which car(s).
+•P = {Sumit, Aakash, Peter, Jony}, 
+•C = {Mercedes, BMW, tricycle}
+•D = {(Sumit, Mercedes), (Johny, Mercedes),
+        (Johny, BMW), (Peter, tricycle)}
+•This means that Sumit drives a Mercedes, Johny drives a Mercedes and a 
+BMW, Peter drives a tricycle, and Aakash does not drive any of these 
+vehicles.
+
+Example:
+
+Let  A  be  the  set  of  students  in  your  school,  and  let  B  be  the  set  of 
+courses. Let R be the relation that consists of those pairs (a, b), where a 
+is a student enrolled in course b.
+For instance, if Jason Goodfriend and Deborah Sherman are enrolled in 
+CS518,  the  pairs  (Jason  Goodfriend,  CS518)  and  (Deborah  Sherman, 
+CS518) belong to R. If Jason Goodfriend is also enrolled in CS510, then 
+the  pair  (Jason  Goodfriend,  CS510)  is  also  in  R.  However,  if  Deborah 
+Sherman  is  not  enrolled  in  CS510,  then  the  pair  (Deborah  Sherman, 
+CS510) is not in R.
+
+Solution:  Note  that  these  relations  are  on  an  infinite  set  and  each  of    these 
+relations is an infinite set. Checking the conditions that define  each relation, 
+we see that
+
+(1,1) is in R1, R3, R4 , and R6:
+
+(1,2) is in R1 and R6:  (2,1) is in R2,  R5,  and R6
+
+(1, −1) is in R2, R3, and R6 :  (2,2) is in R1, R3, and R4.
+
+Relations on a Set
+•How many different relations can be defined on a set A with n 
+elements?
+
+•A relation on a set A is a subset of A×A.
+•How many elements are in A×A ?
+
+•There are n2 elements in A×A, so how many subsets (= relations on A) 
+does A×A have?
+
+•The number of subsets that we can form out of a set with m elements 
+is 2m. Therefore, 2n2 subsets can be formed out of A×A.
+
+•Answer: We can define 2n2 different relations on A.
+
+33
+
+Inverse Relations
+
+• Two sets are inverses of each other if the domain and range of each 
+set is flipped
+
+Ex: Write the inverse of {(2,3), (4, -7), (-5, 0)}
+
+Inverse: {(3, 2), (-7, 4), (0, -5)}
+
+Exercise 1
+
+Find the inverse of the relation
+x   -1   0     1   2
+y   -2  -1   -1  -2    
+
+Find the domain and range of the relation and its inverse.  
+
+function    f(x)
+
+inverse   f –1 (x)
+
+domain
+range
+
+Solution
+The inverse of the relation
+x   -1   0     1   2
+y   -2  -1   -1  -2    
+Is:
+
+x   -2   -1    -1  -2
+y   -1     0    1    2 
+
+The domain and range of the relation and its inverse.
+
+function    f(x)
+{-1,0,1,2}
+{-2,-1}
+
+inverse   f –1 (x)
+{-2,-1}
+{-1,0,1,2}
+
+domain
+range
+
+  
+Combining relations
+
+• There are two ways to combine relations R1 and R2
+
+• Via Boolean operators
+• Via relation “composition”
+
+39
+
+Combining Relations
+
+Combining relations via relational 
+composition
+
+Computing the composite of  two relations requires that we find elements that are 
+the  second  element  of   ordered  pairs  in  the  first  relation  and  the  first  element  of  
+ordered pairs in the second relation.
+
+Combining relations via relational composition
+
+• Let R be a relation from A to B, and S be a relation from B to C
+
+• Let a ∈ A, b ∈ B, and c ∈ C
+• Let (a,b) ∈ R, and (b,c) ∈ S
+• Then the composite of R and S consists of the ordered pairs (a,c)
+
+• We denote the relation by S ◦ R
+• Note that S comes first when writing the composition!
+
+42
+
+Composite relation:
+
+Note:
+
+Example:
+
+Composing the Parent Relation with Itself
+
+• Let R is a relation on a set A, that is, R is a relation from a set A to 
+itself. Then R◦R, the composition of R with itself, is always 
+represented. Also, R◦R is sometimes denoted by R2. Similarly, R3 = R2◦R 
+= R◦R◦R, and so on. Thus, Rn is defined for all positive n.
+
+• Let R be the relation on the set of all people such that (a, b) ∈ R if 
+person a is a parent of person b. Then (a, c) ∈ R ◦R if and only if there 
+is a person b such that (a, b) ∈ R and (b, c) ∈ R, that is, if and only if 
+there is a person b such that a is a parent of b and b is a parent of c. 
+• In other words, (a, c) ∈ R ◦R if and only if a is a grandparent of c.
+
+Combining relations via relational composition
+
+• Let M be the relation “is mother of”
+• Let F be the relation “is father of”
+• What is M ◦ F?
+
+• If (a,b) ∈ F, then a is the father of b
+• If (b,c) ∈ M, then b is the mother of c
+• Thus, M ◦ F denotes the relation “maternal grandfather”
+
+• What is F ◦ M?
+
+• If (a,b) ∈ M, then a is the mother of b
+• If (b,c) ∈ F, then b is the father of c
+• Thus, F ◦ M denotes the relation “paternal grandmother”
+
+• What is M ◦ M?
+
+• If (a,b) ∈ M, then a is the mother of b
+• If (b,c) ∈ M, then b is the mother of c
+• Thus, M ◦ M denotes the relation “maternal grandmother”
+
+45
+
+Combining relations via relational composition
+
+• Given relation R
+
+• R ◦ R can be denoted by R2
+• R2 ◦ R = (R ◦ R) ◦ R = R3
+• Example: M3 is your mother’s mother’s mother
+
+46
+
+Power of relation: 
+
+Example:
+
+Exercise
+
+•Let R = { (1, 1), (2, 1), (3, 2), (4, 3) }.
+
+What is R2, R3?
+
+Proof by techniques
+
+1. Proof by Induction
+2. Proof by Contra positive
+3. Proof by Contradiction
+4.  Proof by Counter Example
+
+7/30/2026
+
+49
+
+Principle of  Mathematical Induction
+     Principle of  Mathematical Induction: To prove that P(n) is true for all positive integers n, 
+
+we complete these steps:
+
+• Basis Step: Show that P(1) is true.
+• Inductive Step: Show that P(k) → P(k + 1)  is true for all positive integers k.
+
+     To complete the inductive step, assuming the inductive hypothesis that P(k) holds for an 
+
+arbitrary integer k, show that  must P(k + 1) be true.
+
+     Climbing an Infinite Ladder Example:
+
+• BASIS STEP: By (1), we can reach rung 1.
+• INDUCTIVE STEP: Assume the inductive hypothesis that we can reach rung k. 
+
+Then by (2), we can reach rung k + 1.
+
+     Hence, P(k) → P(k + 1) is true for all positive integers k. We can reach every rung 
+
+on the ladder.
+
+    
+Remembering How Mathematical Induction 
+Works
+
+Consider  an infinite 
+sequence  of  
+dominoes, labeled 
+1,2,3, …, where each 
+domino is standing. 
+
+Let P(n) be the 
+proposition that 
+the nth domino is 
+knocked over. 
+
+We know that the first 
+domino is knocked down, 
+i.e., P(1) is true .
+
+We also know that  if   
+whenever the kth domino 
+is knocked over, it knocks 
+over the (k + 1)st domino, 
+i.e, P(k) → P(k + 1) is true 
+for all positive integers k. 
+
+Hence, all dominos are knocked 
+over.
+
+P(n) is true for all positive 
+integers n.
+
+Proving a Summation Formula
+
+   Example: Show that:  
+   Solution:
+
+• BASIS STEP: P(1) is true since 1(1 + 1)/2 = 1.
+• INDUCTIVE STEP: Assume the inductive hypothesis holds 
+
+P(k) and then show that P(k + 1) holds has well.
+
+                     The inductive hypothesis is
+        Under this assumption,   
+
+ 
+Conjecturing and Proving Correct a 
+Summation Formula
+      Example: Conjecture and prove correct a formula for the sum of  the first n positive 
+
+odd integers. Then prove your conjecture.
+
+       Solution: We have:   1= 1, 1 + 3 = 4, 1 + 3 + 5 = 9,  1 + 3 + 5 + 7 = 16, 1 + 3 + 
+
+5 + 7 + 9 = 25.
+
+• We can conjecture that the sum of  the first n positive odd integers is n2, 
+
+Inductive Hypothesis : 1 + 3 + 5 + ∙∙∙+ (2k  − 1)  =k2  
+
+• We prove the conjecture is proved correct with mathematical induction.
+• BASIS STEP: P(1) is true since 12 = 1.
+• INDUCTIVE STEP: P(k) → P(k + 1) for every positive integer k.
+
+               Assume the inductive hypothesis holds and then show that P(k + 1) holds has 
+
+well.
+
+1 + 3 + 5 + ∙∙∙+ (2k  − 1) + (2k + 1) =[1 + 3 + 5 + ∙∙∙+ (2k  − 1)] + (2k + 1)
+                                                                        = k2 + (2k + 1)  (by the inductive hypothesis)
+                                                                        = k2 + 2k + 1 
+                                                                         = (k + 1) 2 
+
+• Hence, we have shown that P(k + 1) follows from P(k). Therefore the sum of  the 
+
+first n positive odd integers is n2. 
+
+ 
+Important Points About Using 
+Mathematical  Induction
+• Mathematical induction can be expressed  as the rule of  inference
+
+  (P(1)  ∧ ∀k (P(k) → P(k + 1))) →  ∀n P(n), 
+
+    where the domain is the set of  positive integers.
+• In a proof  by mathematical induction, we don’t assume that P(k) is true for all 
+
+positive integers! We show that if  we assume that P(k) is true, then P(k + 1) must 
+also be true. 
+
+• Proofs by mathematical induction do not always start at the integer 1. In such a case, 
+the basis step begins at a starting point b where b is an integer. We will see examples 
+of  this soon.
+
+     
+Proving Inequalities
+
+  Example: Use mathematical induction to prove that n < 2n  for all positive integers n.
+   Solution: Let P(n) be the proposition that n < 2n. 
+• BASIS STEP: P(1) is true since 1 < 21 = 2.
+• INDUCTIVE STEP: Assume P(k) holds, i.e., k < 2k, for an arbitrary positive 
+
+integer k.
+
+• Must show that P(k + 1) holds. Since by the inductive hypothesis, k < 2k, it 
+
+follows that:
+
+       k + 1 < 2k + 1  ≤ 2k  + 2k = 2k  (1+1 )= 2 ∙ 2k  = 2k+1  
+
+    Therefore n < 2n  holds for all positive integers n.
+
+Proving Inequalities
+
+   Example: Use mathematical induction to prove that 2n < n!, for every integer n ≥ 4.
+   Solution: Let P(n) be the proposition that 2n  < n!. 
+
+• BASIS STEP: P(4) is true since 24  = 16  < 4! = 24.
+• INDUCTIVE STEP: Assume P(k) holds, i.e., 2k  < k!  for an arbitrary integer k ≥ 4. 
+
+To show that P(k + 1) holds: 
+
+                2k+1 = 2∙2k  
+                                    < 2∙ k!          (by the inductive hypothesis)
+                                    < (k + 1)k!
+                        = (k + 1)!
+ Therefore, 2n  < n!  holds, for every integer n ≥ 4.
+
+Note that here the basis step is P(4), since P(0), P(1), P(2),  and P(3) are all false.  
+
+Proving Divisibility Results
+
+   Example: Use mathematical induction to prove that n3 − n is divisible by 3, for every 
+
+positive integer n.
+
+   Solution: Let P(n) be the proposition that n3 − n is divisible by 3. 
+
+• BASIS STEP: P(1) is true since 13 − 1 = 0, which is divisible by 3.
+• INDUCTIVE STEP: Assume P(k) holds, i.e., k3 − k is divisible by 3, for an 
+
+arbitrary positive integer k. To show that P(k + 1) follows: 
+                (k + 1)3 − (k + 1) = (k3 + 3k2 + 3k + 1) − (k + 1) 
+                                               = (k3 − k) + 3(k2 + k) 
+    By the inductive hypothesis, the first term (k3 − k) is divisible by 3 and the 
+
+second term is divisible by 3 since it is an integer multiplied by 3. So by part (i) of  
+Theorem 1 in Section 4.1 , (k + 1)3 − (k + 1)  is divisible by 3. 
+
+ Therefore, n3 − n is divisible by 3, for every positive integer n.
+
+Number of  Subsets of  a Finite Set
+
+   Example: Use mathematical induction to show that if  S is a finite set with n 
+
+elements, where n is a nonnegative integer, then S has 2n subsets.
+
+        (Chapter 6 uses combinatorial methods to prove this result.)
+
+Solution: Let P(n) be the proposition that a set with n elements has 2n subsets.
+
+• Basis Step: P(0) is true, because the empty set has only itself  as a subset and  20 = 
+
+1.
+
+• Inductive Step: Assume P(k) is true for an arbitrary nonnegative integer k.
+
+continued → 
+
+   
+Number of  Subsets of  a Finite Set
+Inductive Hypothesis: For an arbitrary nonnegative 
+integer k, every set with k elements has 2k subsets.
+
+Let T be a set with k + 1 elements. Then T = S ∪ {a}, where a ∈ T and S = T − 
+{a}.  Hence |S| = k.
+For each subset X of  S, there are exactly two subsets of  T, i.e., X and X ∪ {a}. 
+
+• By the inductive hypothesis S  has 2k subsets. Since there are two subsets of  T  for 
+
+each subset of  S, the number of  subsets of  T  is 2 ∙2k = 2k+1.
+
+Practice
+
+Question. Find an integer N such that 2n > n4 whenever n is greater than N. Prove that your result 
+is correct using mathematical induction.
+Question Use mathematical induction to prove that a − b is a factor of  an − bn whenever n is a 
+positive integer.
+Question Use mathematical induction to prove that 9 divides n3 +(n + 1)3 + (n + 2)3 whenever n is 
+a nonnegative integer.
+
+Strings
+
+   Definition:  The set  Σ* of  strings over the alphabet Σ:
+
+BASIS STEP: λ ∊ Σ* (λ is the empty string)
+RECURSIVE STEP: If  w is in Σ* and x is in Σ, then wx ∈ Σ*.
+
+   Example:  If  Σ = {0,1}, the strings in in Σ* are the set of  all bit strings, λ,0,1, 
+
+00,01,10, 11, etc.
+
+   Example:  If  Σ = {a,b}, show that aab is in Σ*.
+
+• Since λ ∊ Σ* and a ∊ Σ, a ∊ Σ*.
+• Since a ∊ Σ* and a ∊ Σ, aa ∊ Σ*.
+• Since aa ∊ Σ* and b ∊ Σ, aab ∊ Σ*.
+
+Length of  a String
+
+   Example: Give a recursive definition of  l(w), the length of  the string w.
+   Solution: The length of  a string can be recursively defined by:
+
+l(λ) = 0;
+l(wx) = l(w) + 1 if  w ∊ Σ* and x ∊ Σ. 
+
+Balanced Parentheses
+
+   Example: Give a recursive definition of  the set  of  balanced parentheses P.
+   Solution:
+
+BASIS STEP:  () ∊ P
+RECURSIVE STEP: If  w ∊ P, then  () w ∊ P,  (w) ∊ P and w () ∊ P.
+
+• Show that (() ()) is in P.
+• Why is ))(() not in P?
+
+Structural Induction
+
+   Definition: To prove a property of  the elements of  a recursively defined set, we use  
+
+structural induction. 
+
+BASIS STEP: Show that the result holds for all elements specified in the basis step 
+
+of  the recursive definition.
+
+RECURSIVE STEP: Show that if  the statement is true for each of  the elements 
+
+used to construct new elements in the recursive step of  the definition, the result 
+holds for these new elements. 
+
+• The validity of  structural induction can be shown to follow from the principle of  
+
+mathematical induction. 
+
+What does the title of this course mean?
+
+• Theory of computation is the branch that deals with how 
+
+efficiently problems can be solved on a model of computation (i.e. 
+lambda calculus)using an algorithm.
+
+• The filed is divided into three major branches
+• Automata Theory
+
+• abstract, mathematical model of computer
+• examples: finite automata, pushdown automata 
+
+• Computability Theory
+
+• Tells us about computability of the problem
+
+• Computational Complexity Theory
+
+•
+
+It considers not only whether a problem can be solved at all on 
+computer
+
+• but also how efficiently the problem can be solved
+
+7/30/2026
+
+65
+
+Formal Language and Automata
+
+• Formal language
+
+• a subset of the set of all possible strings  from a set of 
+
+symbols 
+
+• example: the set of all syntactically correct C programs
+
+• Automata
+
+• abstract, mathematical model of computer
+• examples: finite automata, pushdown automata Turing 
+
+machine,  many others
+
+• Let’s consider each of these in turn
+
+7/30/2026
+
+66
+
+Formal language
+Alphabet = finite set of symbols or characters
+                   examples: Σ = {a,b}, binary, ASCII
+
+String = finite sequence of symbols from an alphabet
+              examples: aab, bbaba, also computer  programs
+
+A formal language is a set of strings over an alphabet
+Examples of formal languages over alphabet Σ = {a, b}:
+
+  L1 = {aa, aba, aababa, aa}
+  L2 = {all strings containing just two a’s and any number of b’s}
+
+A formal language can be finite or infinite.
+
+7/30/2026
+
+67
+
+              
+Alphabets
+
+• An alphabet is a finite set of symbols.
+• Usually, use Σ to represent an alphabet.
+• Examples:
+
+  Σ = {0,1}, the set of binary digits.
+  Σ = {a, b, … , z}, the set of all lower-case letters.
+  Σ = {(, )}, the set of open and close parentheses.
+
+7/30/2026
+
+68
+
+Strings 
+
+• A string is a finite sequence of symbols from an alphabet.
+• Examples:
+
+• 0011 and 11 are strings from Σ = {0,1}
+• abc and bbb are strings from Σ = {a, b, … , z}
+•
+
+(()(())) and )(() are strings from Σ = {(, )}
+
+7/30/2026
+
+69
+
+Strings
+
+• Empty string: ε
+• Length of string: |0010| = 4, |aa| = 2, |ε|=0
+• Prefix of string: aaabc, aaabc, aaabc
+• Suffix of string: aaabc, aaabc, aaabc 
+• Substring of string: aaabc, aaabc, aaabc
+
+7/30/2026
+
+70
+
+Strings
+
+• Concatenation: ω=abd, α=ce, ωα=abdce
+• Exponentiation: ω=abd, ω3=abdabdabd, ω0=ε
+• Reversal: ω=abd, ωR = dba
+• Σk = set of all k-length strings formed by the symbols 
+
+in Σ
+
+  e.g., Σ={a,b}, Σ2={ab, ba, aa, bb}, Σ0={ε}
+
+7/30/2026
+
+71
+
+Strings
+
+• Kleene Closure Σ* = Σ0∪Σ1∪Σ2∪… = ∪
+
+k≥0 Σk
+
+e.g., Σ={a, b}, Σ* = {ε, a, b, ab, aa, ba, bb, aaa, aab, 
+abb, … } is the set of all strings formed by a’s and 
+b’s.
+
+• Σ+ = Σ1∪Σ2∪Σ3∪… = ∪
+
+k>0 Σk
+i.e., Σ* without the empty string.
+
+7/30/2026
+
+72
+
+ 
+Formal languages (continued)
+
+We often use string variables;  u = aab, v = bbaba
+
+Operations on strings
+   length:  |u| = 3
+   reversal: uR = baa
+   concatenation: uv = aabbbaba
+
+The empty string, denoted λ , has some  special 
+properties:
+| ε | = 0
+ ε w = w ε  = w
+
+7/30/2026
+
+73
+
+ 
+Formal languages (continued)
+
+If w is a string, then wn stands for the string obtained
+by repeating w n times.
+w0 = ε
+
+Σ+ = Σ* − {ε}
+
+L0 = {ε}
+L1 = L
+
+7/30/2026
+
+74
+
+Operations on languages
+
+Set operations:
+
+L1 ∪ L2 = {x | x ∈ L1 or x ∈ L2} is union
+L1 ∩ L2 = {x | x ∈ L1 and x ∈ L2} is intersection
+L1 − L2 = {x | x ∈ L1 and x ∉ L2} is difference
+      =  Σ* - L                                 is complement
+L1 ⊕ L2 = (L1 - L2) ∪ (L2 - L1)  is “symmetric difference”
+
+String operations:
+
+LR = {wR | w ∈ L}  is “reverse of language”
+L1L2 = {xy | x ∈ L1, y ∈ L2} is “concatenation of languages”
+L* = {x = λx1…xk | k ≥ 0 and x1, …, xk ∈ L} =
+
+L0 ∪ L1 ∪ L2 . . . . is “Kleene star” or "star closure"
+
+L+ = L1 ∪ L2 . . . .  is positive closure
+
+7/30/2026
+
+75
+
+Some review questions
+
+• What is {ε, 01, 001} ∪ {ε, 00, 10}?
+• What is the concatenation of {0, 11, 010} and {ε, 
+
+10, 010}?
+
+• What are the 5 shortest strings in the language 
+
+{0i1i | i ≥ 0}?
+
+• What is the powerset {a, b, ab}?
+
+7/30/2026
+
+76
+
+Languages
+• A language is a set of strings over an alphabet.
+• Examples:
+
+• Σ={(, )}, L1={(), )(, (())} is a language over Σ. The set L2 of 
+
+all strings with balanced left and right parentheses is also 
+a language over Σ.
+
+• Σ={a, b, c, … , z}, the set L of all legal English words is a 
+
+language over Σ.
+
+• The set {ε} is a language over any alphabet.
+  What is the difference between φ and {ε}?
+
+7/30/2026
+
+77
+
+Languages
+
+• Other Examples:
+
+• Σ={0, 1}, L={0n1n | n≥1} is a language over Σ consisting 
+
+of the strings {01, 0011, 000111, … }
+
+• Σ={0, 1}, L = {0i1j | j≥i≥0} is a language over Σ 
+
+consisting of the strings with some 0’s (possibly none) 
+followed by at least as many 1’s.
+
+7/30/2026
+
+78
+
+Problems
+
+•
+
+In automata theory, a problem is to decide whether a given string is 
+a member of some particular language.
+
+• This formulation is general enough to capture the difficulty levels of 
+
+all problems.
+
+7/30/2026
+
+79
+
+Why Automata Theory?
+
+To study abstract computing devices which are closely related to 
+today’s computers. A simple example of finite state machine:
+
+start
+
+off
+
+1
+
+1
+
+on
+
+There are many different kinds of machines.
+
+7/30/2026
+
+80
+
+Another Example
+
+1
+
+start
+
+off
+
+0
+
+0
+
+on
+
+0
+
+1
+
+off
+
+1
+
+When will this be on?
+Try 100, 1001, 1000, 111, 00, … 
+
+7/30/2026
+
+81
+
+Automata
+
+•
+
+Input File: divided into cells and each of which hold 
+one symbol
+
+• Control Unit (with finite states) : it can be any one 
+
+from finite no of states.
+
+• Temporary Storage: consisting of unlimited no of cells
+• Output: final string at the end of the input
+• Accepter: if output response is limited to yes or 
+
+no(Binary output) 
+
+• Transducer: capable of generating strings of symbol as 
+
+output
+
+7/30/2026
+
+82
+
+Finite automata
+
+(cid:0) Developed in 1940’s and 1950’s for neural net models of 
+
+brain and computer hardware design
+
+(cid:0) Finite memory!
+(cid:0) Many applications:
+
+(cid:0) text-editing software: search and replace
+(cid:0) many forms of pattern-recognition (including use in WWW 
+
+search engines)
+
+(cid:0) compilers: recognizing keywords (lexical analysis)
+(cid:0) sequential circuit design
+(cid:0) software specification and design
+(cid:0) communications protocols
+
+7/30/2026
+
+83
+
+Pushdown automata
+
+• Noam Chomsky’s work in 1950’s and 1960’s on grammars for natural 
+
+languages
+infinite memory, organized as a stack
+
+•
+
+• Applications:
+
+• compilers: parsing computer programs
+• programming language design
+
+7/30/2026
+
+84
+
+Automata, languages, and grammars
+
+(cid:0) In this course, we will study the relationship 
+
+between automata, languages, and grammars
+(cid:0) Recall that a formal language is a set of strings 
+
+over a finite alphabet
+
+(cid:0) Automata are used to recognize languages
+(cid:0) Grammars are used to generate languages
+(cid:0) (All these concepts fit together)
+
+7/30/2026
+
+85
+
+Why study the theory of computing?
+
+(cid:0) Core mathematics of CS (has not changed in over 
+
+30 years)
+
+(cid:0) Many applications, especially in design of 
+compilers and programming languages
+
+(cid:0) Important to be able to recognize uncomputable 
+
+and intractable problems
+
+(cid:0) Need to know this in order to be a computer 
+scientist, not simply a computer programmer
+
+7/30/2026
+
+86
+
+SUMMARY
+
+87
+
+Unit-I
+
+•
+
+Symbol – An atomic unit, such as a digit, character, lower-case letter, etc. 
+Sometimes a word. [Formal language does not deal with the “meaning” of 
+the symbols.]
+
+• Alphabet – A finite set of symbols, usually denoted by Σ.
+
+ Σ = {0, 1}
+
+Σ = {0, a,  , 4}
+
+Σ = {a, b, c, d}
+
+•
+
+String – A finite length sequence of symbols, presumably from some 
+alphabet.
+
+w = 0110 y = 0aa
+
+x = aabcaa
+
+z = 111
+
+special string: ε (also denoted by λ)
+
+concatenation:
+
+wz = 0110111
+
+|w| = 4 |ε| = 0
+
+length:
+reversal: yR = aa0
+
+|x| = 6
+
+7/30/202
+6
+
+•
+
+SUMMARY (Contd.)
+Some special sets of strings:
+Σ* All strings of symbols from Σ
+Σ+
+
+ Σ* - {ε}
+
+88
+
+Unit-I
+
+• Example:
+Σ = {0, 1}
+Σ* = {ε, 0, 1, 00, 01, 10, 11, 000, 001,…}
+Σ+ = {0, 1, 00, 01, 10, 11, 000, 001,…}
+
+• A (formal) language is:
+
+1) A set of strings from some alphabet (finite or infinite)., in other words
+2) Any subset L of Σ*
+
+•
+
+Some special languages:
+ {}
+The empty set/language, containing no strings
+ {ε} A language containing one string, the empty string.
+
+7/30/202
+6
+
+89
+
+Unit-I
+
+•
+
+SUMMARY (Contd.)
+Examples:
+Σ = {0, 1}
+L = {x | x is in   Σ* and x contains an even number of 0’s}
+
+Σ = {0, 1, 2,…, 9, .}
+L = {x | x is in Σ* and x forms a finite length real number}
+   = {0, 1.5, 9.326,…}
+
+Σ = {a, b, c,…, z, A, B,…, Z}
+L = {x | x is in Σ* and x is a Pascal reserved word}
+   = {BEGIN, END, IF,…}
+
+Σ = {Pascal reserved words} U { (, ), ., :, ;,…} U {Legal Pascal identifiers}
+L = {x | x is in Σ* and x is a syntactically correct Pascal program}
+
+Σ = {English words}
+L = {x | x is in Σ* and x is a syntactically correct English sentence}
+
+7/30/202
+6
+
+Finite 
+
+Automata
+
+Less power
+
+Power of Automata 
+
+Pushdown
+
+Automata
+
+Turing
+
+Machine
+
+More power
+
+Solve more 
+
+computational problems
+
+90
+
+Chomsky Hierarchy  
+
+91
+
+

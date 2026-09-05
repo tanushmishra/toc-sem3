@@ -1,0 +1,5 @@
+{
+  "summary": "Comprehensive Theory of Computation Test 1 study notes covering all three units (General Introduction, FA & Regular Languages, Regular Expressions). Built directly from your class lecture slides (Lect 1-3, Lect 4-11, Lect 12-17) and the Closure Properties supplementary notes. Includes formal definitions, DFA/NFA/ε-NFA theory, NFA→DFA subset construction, DFA minimization (Mark algorithm), Moore/Mealy machines, closure properties, regular expressions with operator precedence, RE↔automata equivalence, and exam strategy tips.",
+  "updatedAt": "2026-09-05T16:20:34.126039500Z",
+  "userFacing": true
+}

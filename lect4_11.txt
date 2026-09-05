@@ -1,0 +1,2337 @@
+       Theory of Computation
+
+                           Lecture#03-08
+
+1
+
+*
+
+Unit-I
+
+                         
+                        
+Computer ???
+
+■ What is a computer?
+
+◻ A computer is a machine is a machine that 
+
+manipulates data is a machine that 
+manipulates data according to a list of 
+instructions. 
+
+■ What does the computer do?
+
+◻ Any thing that can be expressed with that list 
+
+of instructions.
+
+*
+
+Unit-I
+
+2
+
+Computer ??? (Cont.)
+
+■ Is there anything that a computer cannot 
+
+do?
+◻ The efforts to answer to this question are 
+started even before the creation of the 
+computer !!
+
+◻ The question leads us to the concept of 
+
+Automata theory.
+
+*
+
+Unit-I
+
+3
+
+Automata theory
+
+■ The word “Automata“ is the plural of “automaton" 
+
+which simply means any machine.
+
+■ automata theory is the study of abstract 
+
+machines and problems they are able to solve. 
+
+■ Automata theory is closely related to formal 
+language theoryAutomata theory is closely 
+related to formal language theory as the 
+automataAutomata theory is closely related to 
+formal language theory as the automata are 
+often classified by the class of formal languages 
+they are able to recognize. 
+
+*
+
+Unit-I
+
+4
+
+Abstract Machine
+
+■ An abstract machine, also called an abstract 
+
+computer, is a theoretical model of a computer, 
+is a theoretical model of a computer hardware or 
+software system used in Automata theory. 
+■ Abstraction of computing processes is used in 
+
+both the computer scienceAbstraction of 
+computing processes is used in both the 
+computer science and computer 
+engineeringAbstraction of computing processes 
+is used in both the computer science and 
+computer engineering disciplines and usually 
+assumes discrete timeAbstraction of computing 
+processes is used in both the computer science 
+and computer engineering disciplines and 
+
+Unit-I
+
+usually assumes discrete time paradigm.
+
+5
+
+*
+
+■ abstract machines are often used in thought 
+
+experiments regarding computability or to 
+
+analyze the complexity of algorithms 
+
+Finite Automata
+ ( or Finite State Machines)
+
+■ This is the simplest kind of machine.
+■ We will study 3 types of Finite 
+
+Automata:
+◻ Deterministic Finite Automata (DFA)
+◻ Non-deterministic Finite Automata (NFA)
+◻ Finite Automata with ε-transitions (ε-NFA)
+
+6
+
+*
+
+*
+
+Unit-I
+
+7
+
+*
+
+Unit-I
+
+8
+
+*
+
+Unit-I
+
+9
+
+*
+
+Unit-I
+
+10
+
+*
+
+Unit-I
+
+11
+
+*
+
+Unit-I
+
+12
+
+*
+
+Unit-I
+
+13
+
+*
+
+Unit-I
+
+14
+
+*
+
+Unit-I
+
+15
+
+*
+
+Unit-I
+
+16
+
+*
+
+Unit-I
+
+17
+
+*
+
+Unit-I
+
+18
+
+*
+
+Unit-I
+
+19
+
+FA with example
+
+■ The String with number of 0’s and number of 1’ are even
+
+q0
+
+0
+
+0
+
+q2
+
+1
+
+1
+
+1
+
+1
+
+q1
+
+0
+
+0
+
+q3
+
+*
+
+Unit-I
+
+20
+
+                           
+                            
+                                                                        
+                           
+                                                                        
+*
+
+Unit-I
+
+21
+
+*
+
+Unit-I
+
+22
+
+*
+
+Unit-I
+
+23
+
+L = {awa : w ∈ {a,b}*}
+
+a
+
+a
+
+q1
+
+q2
+
+a,b
+
+q0
+
+b
+
+q3
+
+This finite accepter accepts all and only the strings of the 
+language given above.  But note that there are two arcs 
+out of q1 labeled a.  How does the FA know which path to 
+take on an a?  It doesn’t; it has to magically guess right.  
+Also, there are no arcs out of q2.  So this FA is 
+nondeterministic.
+
+*
+
+Unit-I
+
+24
+
+L = {awa : w ∈ {a,b}*}
+
+b
+
+q1
+
+a
+
+a
+
+b
+
+a
+
+q2
+
+q0
+
+b
+
+q3
+
+This finite accepter accepts all and only the strings of the 
+language given above. This FA is Deterministic.
+
+*
+
+Unit-I
+
+25
+
+■ The finite control can be described by a transition diagram:
+■ Example #1:
+
+1
+
+q0
+
+0
+
+0
+
+q1
+
+1
+
+        1        0       0
+ q0 q0 q1 q0 q0 q0
+
+       1        1
+
+■ One state is final/accepting, all others are rejecting.
+■ The above DFA accepts those strings that contain an even 
+
+number of 0’s
+
+*
+
+Unit-I
+
+26
+
+■ Example #2:
+
+a
+
+q0
+
+b
+
+c
+
+a
+
+q1
+
+b
+
+a/b/c
+
+q2
+
+c
+
+        a        c
+      c
+ q0 q0 q1 q2 q2 q2
+
+        a        a       c
+ q0 q0 q0 q1             
+
+       c
+
+       b
+
+accepted
+
+rejected
+
+■ Accepts those strings that contain at least two c’s
+
+*
+
+Unit-I
+
+27
+
+1
+
+q0
+
+0
+
+0
+
+q1
+
+1
+
+■ For example #1:
+
+Q = {q0, q1}
+Σ = {0, 1}
+Start state is q0
+F = {q0}
+
+δ:
+
+0
+ q0  q1 
+
+1
+ q0
+
+ q1 
+
+ q0  q1
+
+*
+
+Unit-I
+
+28
+
+a
+
+q0
+
+b
+
+c
+
+a
+
+q1
+
+b
+
+c
+
+a/b/c
+
+q
+
+2
+
+■ For example #2:
+
+Q = {q0, q1, q2}
+Σ = {a, b, c}
+Start state is q0
+F = {q2}
+
+δ:
+ q0  q0 
+
+a
+b
+ q0  q1
+
+c
+
+ q1 
+
+ q1  q1  q2
+
+ q2  q2  q2  q2
+
+■ Since δ is a function, at each step M has exactly one option.
+
+■
+
+It follows that for a given string, there is exactly one 
+computation.
+
+Unit-I
+
+29
+
+*
+
+Extension of δ to Strings
+
+δ^ : (Q x Σ*) –> Q
+
+δ^(q,w) – The state entered after reading string w having started in 
+
+state q.
+
+Formally:
+
+1) δ^(q, ε) = q, and
+2) For all w in Σ* and a in Σ
+ δ^(q,wa) = δ (δ^(q,w), a) 
+
+*
+
+Unit-I
+
+30
+
+■ Recall Example #1:
+
+1
+
+q0
+
+0
+
+0
+
+q1
+
+1
+
+■ What is δ^(q0, 011)? Informally, it is the state entered by M after 
+
+processing 011 having started in state q0.
+
+■ Formally:
+
+ δ^(q0, 011)  = δ (δ^(q0,01), 1)
+= δ (δ ( δ(q0,0), 1), 1)
+= δ (δ (q1, 1), 1)
+= δ (q1, 1)
+= q1
+
+■
+
+Is 011 accepted? No, since δ^(q0, 011) = q1 is not a final state.
+
+*
+
+Unit-I
+
+31
+
+■ Notes:
+
+◻ A DFA M = (Q, Σ, δ,q0,F) partitions the set Σ* into two sets: L(M) and
+
+Σ* - L(M). 
+
+◻
+
+If L = L(M) then L is a subset of L(M) and L(M) is a subset of L.
+
+◻ Similarly, if L(M1) = L(M2) then L(M1) is a subset of L(M2) and L(M2) is a 
+
+subset of L(M1). 
+
+◻ Some languages are regular, others are not. For example, if
+
+L1 = {x | x is a string of 0's and 1's containing an even 
+
+number of 1's} and 
+
+L2 = {x | x = 0n1n for some n >= 0} 
+
+then L1 is regular but L2 is not.
+
+■ Questions:
+
+◻ How do we determine whether or not a given language is regular?
+◻ How could a program “simulate” a DFA?
+
+*
+
+Unit-I
+
+32
+
+■ Give a DFA M such that:
+
+L(M) = {x | x is a string of 0’s and 1’s and |x| >= 2}
+
+q0
+
+0/1
+
+0/1
+
+q1
+
+0/1
+
+q
+
+2
+
+*
+
+Unit-I
+
+33
+
+■ Give a DFA M such that:
+
+L(M) = {x | x is a string of (zero or more) a’s, b’s and c’s such 
+
+that x does not contain the substring aa}
+
+b/c
+
+q
+
+0
+
+a
+
+b/c
+
+q
+
+1
+
+a
+
+a/b/c
+
+q2
+
+*
+
+Unit-I
+
+34
+
+■ Give a DFA M such that:
+
+ L(M) = {x | x is a string of a’s, b’s and c’s such that x 
+
+contains the substring aba}
+
+b/c
+
+q0
+
+a
+
+q1
+
+a
+
+c
+
+b/c
+
+b
+
+a
+
+q2
+
+a/b/c
+
+q
+
+3
+
+*
+
+Unit-I
+
+35
+
+■ Give a DFA M such that:
+
+L(M) = {x | x is a string of a’s and b’s such that x 
+
+contains both aa and bb}
+
+q0
+
+a
+
+b
+
+a
+
+b
+
+q1
+
+a
+
+b
+
+q4
+
+a
+
+q2
+
+b
+
+q5
+
+b
+
+a
+
+a
+
+b
+
+q3
+
+q6
+
+b
+
+a/b
+
+q
+
+7
+
+a
+
+*
+
+Unit-I
+
+36
+
+■ Let Σ = {0, 1}. Give DFAs for {}, {ε}, Σ*, and Σ+.
+
+For {}:
+
+For {ε}:
+
+0/1
+
+q0
+
+For Σ*:
+
+For Σ+:
+
+0/1
+
+q
+
+0
+
+0/1
+
+q
+
+0
+
+0/1
+
+q0
+
+0/1
+
+q1
+
+0/1
+
+q
+
+1
+
+*
+
+Unit-I
+
+37
+
+*
+
+Unit-I
+
+38
+
+Nondeterministic Finite State
+Automata (NFA)
+
+■ An NFA is a five-tuple:
+
+M = (Q, Σ, δ, q0, F)
+
+Q
+Σ
+q0
+F
+δ
+
+A finite set of states
+A finite input alphabet
+The initial/starting state, q0 is in Q
+A set of final/accepting states, which is a subset of Q
+A transition function, which is a total function from Q x Σ to 2Q
+
+δ: (Q x Σ) –> 2Q
+
+-2Q is the power set of Q, the set of all subsets of Q  δ(q,s)
+
+-The set of all states p such that there is a transition
+
+  labeled s from q to p
+
+δ(q,s) is a function from Q x S to 2Q (but not to Q)
+
+*
+
+Unit-I
+
+39
+
+*
+
+Unit-I
+
+40
+
+*
+
+Unit-I
+
+41
+
+Non-deterministic FA (NFA)
+
+■ For each state, zero, one or more 
+
+transitions are allowed on the same input 
+symbol.
+
+■ An input is accepted if there is a path 
+
+leading to a final state.
+
+■ Example #1: some 0’s followed by some 1’s
+
+0
+
+q0
+
+0
+
+1
+
+q1
+
+1
+
+0/1
+
+q
+
+2
+
+Q = {q0, q1, q2}
+Σ = {0, 1}
+Start state is q0
+F = {q2}
+
+δ:
+ q0
+
+ q1
+
+ q2
+
+0
+
+1
+
+{q0, q1}
+
+{}
+
+{}
+
+{q2}
+
+{q1, q2}
+
+{q2}
+
+*
+
+Unit-I
+
+43
+
+0
+
+1
+
+q3
+
+q1
+
+0/1
+
+q
+
+4
+
+0/1
+
+q
+
+2
+
+■ Example #2: pair of 0’s or pair of 1’s
+
+Q = {q0, q1, q2 , q3 , q4}
+Σ = {0, 1}
+Start state is q0
+F = {q2, q4}
+
+0/1
+
+q0
+
+0
+
+1
+
+δ:
+q0
+
+q1
+
+q2
+
+q3
+
+q4
+
+0
+
+1
+
+{q0, q3}
+
+{q0, q1}
+
+{}
+
+{q2}
+
+{q4}
+
+{q4}
+
+{q2}
+
+{q2}
+
+{}
+
+{q4}
+
+*
+
+Unit-I
+
+44
+
+■ Determining if a given NFA (example #2) accepts a given string 
+
+(001) can be done algorithmically:
+
+q0
+
+0
+
+q0
+
+q0
+
+q3
+
+q3
+
+q4
+
+1
+
+q0
+
+0
+
+q1
+
+q4 accepted
+
+■ Each level will have at most n states
+
+*
+
+Unit-I
+
+45
+
+■ Another example (010):
+
+q0
+
+0
+
+q0
+
+q0
+
+1
+
+q0
+
+0
+
+q3
+
+q1
+
+q3
+
+not accepted
+
+■ All paths have been explored, and none lead to an accepting 
+
+state.
+
+*
+
+Unit-I
+
+46
+
+An Example of NFA
+In this NFA (Q,Σ,δ,q0,F), Q = {q0,q1,q2}, Σ = 
+{0,1},
+F = {q2} and δ is:
+q
+
+Start
+
+0
+
+Inputs
+
+1
+
+q
+
+0
+
+0
+
+1
+
+1
+
+1
+
+q
+
+OR
+
+States
+q0
+q1
+q2
+
+0
+
+φ
+
+{q1 }
+{q0 }
+
+1
+{q1,q2}
+{q2 }
+φ
+
+2
+
+Note that each transition can lead to a set of 
+states,
+which can be empty.
+
+Language of an NFA
+
+  Given an NFA M, the language recognized by M is 
+the set of all strings that, starting from the initial 
+state, has at least one path reaching a final state 
+after the whole string is read.
+
+  Consider the previous example:
+
+  For input “101”, one path is q0→q1→q1→q2 and 
+the other one is q0→q2→q0→q1. Since q2 is a 
+final state, so “101” is accepted. For input “1010”, 
+none of its paths can reach a final state, so it is 
+rejected.
+
+More Examples of NFA
+
+Start
+
+q
+
+0
+
+Start
+
+0-
+9
+
++,-
+
+q
+
+0
+
+q
+
+1
+
+q
+
+3
+
+a
+
+b
+
+q
+
+1
+
+q
+
+2
+
+0-
+9
+
+0-
+9
+0-9
+.
+
+0-
+9
+
+b
+
+q
+
+4
+
+0-
+9
+
+E
+
+0-
+9
+
+b
+
+q
+
+2
+
+0-
+9
+
++,-
+
+q
+
+5
+
+0-
+9
+
+0-
+9
+
+q
+
+6
+0-
+9
+
+q
+
+7
+
+Class Discussion
+
+  Consider the language L that consists of 
+all the strings over Σ = {0, 1} such that the 
+third last symbol is a “1”.
+(a) Construct a DFA for L.
+(b) Construct an NFA for L.
+
+Is NFA more powerful than DFA?
+
+■ Let Σ = {a, b, c}. Give an NFA M that accepts:
+
+L = {x | x is in Σ* and x contains ab}
+
+a/b/c
+
+q0
+
+a
+
+b
+
+q1
+
+a/b/c
+
+q
+
+2
+
+Is L a subset of L(M)?
+Is L(M) a subset of L?
+
+■
+
+Is an NFA necessary? Could a DFA accept L? Try and give an 
+equivalent DFA as an exercise.
+
+■ Designing NFAs is not a typical task.
+
+*
+
+Unit-I
+
+51
+
+Nondeterminism
+
+A finite automaton is deterministic if:
+from every node there is exactly one arc 
+labeled for each character in the alphabet of 
+the language. But in case of Non – 
+deterministic from every node more that one 
+transition can take place.
+
+*
+
+Unit-I
+
+52
+
+L = {ambn : m, n ≥ 0}
+
+a
+
+b
+
+q0
+
+a
+
+q1
+
+b
+
+q2
+
+a,b
+
+Does this automaton correspond to (represent, accept) the 
+above language?  Is it deterministic?
+
+*
+
+Unit-I
+
+53
+
+Some exercises
+
+a
+
+q0
+
+b
+
+b
+
+q1
+
+a
+
+a,
+b
+q2
+
+Use set notation to describe the language accepted by 
+the above DFA
+
+*
+
+Unit-I
+
+54
+
+Some exercises
+
+a
+
+q0
+
+b
+
+b
+
+q1
+
+a
+
+a,
+b
+q2
+
+L(M) = {anbm}, where n ≥ 0 and m ≥ 1
+
+*
+
+Unit-I
+
+55
+
+Some exercises
+
+A DFA that accepts the formal language 
+{ab}.
+
+q0
+
+a
+
+b
+
+q1
+
+b
+
+a
+
+q2
+
+a,b
+
+*
+
+Unit-I
+
+56
+
+q3
+
+a,b
+
+Some exercises
+
+Use set notation to describe the 
+language
+accepted by the following DFA.
+
+b
+
+a
+
+c
+
+b
+
+c
+
+a
+
+a
+
+b,
+c
+
+a,b,
+c
+
+Can you give a DFA that accepts 
+the 
+complement of this language?
+
+*
+
+Unit-I
+
+57
+
+NDFA
+
+Differences between a DFA and an NDFA:
+(1) in an NDFA, the range of δ is in the powerset of 
+Q (instead of just Q), so that from the current 
+state, upon reading a symbol:
+(a)  more than one state might be the next state 
+of the NDFA, or 
+(b) no state may be defined as the next state of 
+the NDFA, and  
+
+(2) λ-moves are possible; that is, a transition from 
+one state to another may occur without reading 
+a symbol from  the input string.
+
+*
+
+Unit-I
+
+58
+
+NDFA = DFA
+
+One kind of automaton is more powerful 
+than another if it can accept and reject 
+some kinds of languages that the other 
+cannot.
+
+Two finite accepters are equivalent if both 
+accept the same language, that is, 
+
+L(M1) = L(M2)
+
+As mentioned previously, we can always find 
+an equivalent DFA for any given NDFA.
+Therefore, NDFA’s are no more powerful 
+
+than DFA’s.
+
+*
+
+Unit-I
+
+59
+
+DFA and NFA
+
+  Is NFA more powerful than DFA?
+  NO! NFA is equivalent to DFA.
+
+Trivial
+
+DFA
+
+NFA
+
+Constructive
+Proof
+
+Constructing DFA from NFA
+
+  Given any NFA M=(Q,Σ,δ,q0,F) recognizing a 
+language L over Σ, we can construct a DFA 
+N=(Q’,Σ ,δ’,q0’,F’) which also recognizes L:
+• Q’ = set of all subsets of Q
+  e.g., if Q = {q0, q1}, Q’ = {{}, {q0}, {q1}, {q0, q1}}
+• q0’ = {q0}
+• F’ = set of all states in Q’ containing a final state of 
+
+M
+• δ’({q1,q2, … qi}, a) = δ(q1,a) ∪ δ(q2,a) ... ∪ δ(qi,a)
+
+a state in M
+
+a state in N
+
+NDFA 🡪 DFA
+
+Example:  Convert the following NDFA into an equivalent DFA 
+
+(Figure 2.12 in Linz.).
+
+*
+
+Unit-I
+
+62
+
+NDFA 🡪 DFA
+
+1. Create a graph GD with vertex {q0}.  Identify this 
+
+vertex as the initial vertex. 
+
+OK; here it is:
+
+{q0}
+
+*
+
+Unit-I
+
+63
+
+NDFA 🡪 DFA
+
+1. Repeat the following steps until no more edges are 
+
+missing:
+a. Take any vertex {qi, qj, …, qk} of GD that has no 
+
+outgoing edge for some a ∈ Σ.
+
+OK.  Vertex q0 in our new DFA has no outgoing 
+
+edge for a yet.
+
+b. Compute δ* (qi, a), δ* (qj, a), …, δ* (qk, a).
+OK.  From q0 in our NDFA, upon reading an a the 
+extended transition function leaves us in state 
+q1, or q2 via a “free” lambda-move.  
+
+*
+
+Unit-I
+
+64
+
+NDFA 🡪 DFA
+
+c. Then form the union of all these δ*, yielding the set 
+
+{ql, qm, …, qn}.
+
+So our new DFA will have a state labeled {q1, q2}. 
+d. Create a vertex for GD labeled {ql, qm, …, qn} if it 
+
+does not already exist.
+
+So create a vertex for our new DFA and label it {q1, 
+
+q2}.
+
+e. Add to GD an edge from {qi, qj, …, qk} to {ql, qm, …, 
+
+qn} and label it with a.
+
+So add a transition labeled a to {q1, q2} from q0.
+
+Unit-I
+
+65
+
+*
+
+NDFA 🡪 DFA
+
+So now we have:
+
+{q0}
+
+{q1, q2}
+
+a
+
+*
+
+Unit-I
+
+66
+
+NDFA 🡪 DFA
+
+1. Repeat the following steps until no more edges are 
+
+missing:
+a. Take any vertex {qi, qj, …, qk} of GD that has no 
+
+outgoing edge for some a ∈ Σ.
+
+OK.  Vertex q0 in our new DFA has no outgoing edge 
+
+for b yet.
+
+b. Compute δ* (qi, b), δ* (qj, b), …, δ* (qk, b).
+Well, there is no transition specified in our NDFA 
+from state q0 upon reading a b.  Therefore, δ* 
+({q0}, b) = ∅.
+
+*
+
+Unit-I
+
+67
+
+NDFA 🡪 DFA
+
+c. Then form the union of all these δ*, yielding the set 
+
+{ql, qm, …, qn}.
+
+So our new DFA will have a state labeled ∅.
+d. Create a vertex for GD labeled {ql, qm, …, qn} if it 
+
+does not already exist.
+
+So create a vertex for our new DFA and label it ∅.
+e. Add to GD an edge from {qi, qj, …, qk} to {ql, qm, …, 
+
+qn} and label it with a.
+
+So add a transition labeled b to ∅ from q0.
+
+*
+
+Unit-I
+
+68
+
+NDFA 🡪 DFA
+
+So now we have:
+
+{q0}
+
+{q1, q2}
+
+b
+
+∅
+
+a
+
+a, b
+
+Any state labeled ∅ represents an 
+impossible move and thus is a 
+non-final trap state.
+
+*
+
+Unit-I
+
+69
+
+NDFA 🡪 DFA
+
+1. Repeat the following steps until no more edges are 
+
+missing:
+a. Take any vertex {qi, qj, …, qk} of GD that has no 
+
+outgoing edge for some a ∈ Σ.
+
+OK.  Vertex {q1, q2} in our new DFA has no outgoing 
+
+edge for a yet.
+
+b. Compute δ* (qi, b), δ* (qj, b), …, δ* (qk, b).
+OK.  From q1 in our NDFA, upon reading an a the 
+extended transition function leaves us in state 
+q1, or q2 via a “free” lambda-move. From q2 in our 
+NDFA, upon reading an a there is no specified 
+transition.
+
+Unit-I
+
+70
+
+*
+
+NDFA 🡪 DFA
+
+c. Then form the union of all these δ*, yielding the set 
+
+{ql, qm, …, qn}.
+The union is {q1, q2} .
+d. Create a vertex for GD labeled {ql, qm, …, qn} if it 
+
+does not already exist.
+
+It does.
+e. Add to GD an edge from {qi, qj, …, qk} to {ql, qm, …, 
+
+qn} and label it with a.
+
+So add a transition labeled a to {q1, q2} from {q1, q2} 
+
+.
+
+*
+
+Unit-I
+
+71
+
+NDFA 🡪 DFA
+
+So now we have:
+
+a
+
+{q0}
+
+{q1, q2}
+
+b
+
+∅
+
+a
+
+a, b
+
+*
+
+Unit-I
+
+72
+
+NDFA 🡪 DFA
+
+1. Repeat the following steps until no more edges are 
+
+missing:
+a. Take any vertex {qi, qj, …, qk} of GD that has no 
+
+outgoing edge for some a ∈ Σ.
+
+OK.  Vertex {q1, q2} in our new DFA has no outgoing 
+
+edge for b yet.
+
+b. Compute δ* (qi, b), δ* (qj, b), …, δ* (qk, b).
+OK.  From q2 in our NDFA, upon reading a b the 
+
+extended transition function leaves us in state 
+q0. From q1 in our NDFA, upon reading a b there 
+is no specified transition.  However, we can 
+make a free lambda-move to q2, and thence to q0.
+Unit-I
+
+73
+
+*
+
+NDFA 🡪 DFA
+
+c. Then form the union of all these δ*, yielding the set 
+
+{ql, qm, …, qn}.
+The union is {q1, q2} .
+d. Create a vertex for GD labeled {ql, qm, …, qn} if it 
+
+does not already exist.
+
+It does.
+e. Add to GD an edge from {qi, qj, …, qk} to {ql, qm, …, 
+
+qn} and label it with a.
+
+So add a transition labeled b to q0 from {q1, q2} .
+
+*
+
+Unit-I
+
+74
+
+NDFA 🡪 DFA
+
+2. Exit from loop.
+3. Every state of GD whose label contains and qf ∈ FN is 
+
+identified as a final vertex.
+
+OK.  State q1 in the NDFA is a final state, so state {q1, 
+
+q2} in the DFA will be a final state.
+
+2.
+
+If MN accepts λ, the vertex q0 in GD is also made a final 
+vertex.
+
+*
+
+Unit-I
+
+75
+
+NDFA 🡪 DFA
+
+Here is the finished DFA (Figure 2.13 in Linz):
+
+*
+
+Unit-I
+
+76
+
+An Example of NFA → DFA
+
+  Consider a simple NFA:
+0
+
+0
+
+Start
+
+q
+
+0
+
+1
+
+1
+
+1
+
+q
+
+1
+
+  Construct a corresponding DFA:
+
+Start
+
+1
+
+1
+
+{q0}
+
+0
+
+{q0, q1}
+
+{q1}
+
+0
+
+{}
+
+1,0
+
+1,0
+
+NDFA 🡪 DFA
+
+Example: Convert this NDFA to a DFA.
+
+*
+
+Unit-I
+
+78
+
+NDFA 🡪 DFA
+
+Example:
+
+*
+
+Unit-I
+
+79
+
+NDFA 🡪 DFA
+
+Example:
+
+*
+
+Unit-I
+
+80
+
+*
+
+Unit-I
+
+81
+
+*
+
+Unit-I
+
+82
+
+*
+
+Unit-I
+
+83
+
+*
+
+Unit-I
+
+84
+
+*
+
+Unit-I
+
+85
+
+*
+
+Unit-I
+
+86
+
+*
+
+Unit-I
+
+87
+
+*
+
+Unit-I
+
+88
+
+*
+
+Unit-I
+
+89
+
+*
+
+Unit-I
+
+90
+
+*
+
+Unit-I
+
+91
+
+*
+
+Unit-I
+
+92
+
+*
+
+Unit-I
+
+93
+
+*
+
+Unit-I
+
+94
+
+*
+
+Unit-I
+
+95
+
+*
+
+Unit-I
+
+96
+
+*
+
+Unit-I
+
+97
+
+*
+
+Unit-I
+
+98
+
+*
+
+Unit-I
+
+99
+
+*
+
+Unit-I
+
+100
+
+*
+
+Unit-I
+
+101
+
+*
+
+Unit-I
+
+102
+
+*
+
+Unit-I
+
+103
+
+*
+
+Unit-I
+
+104
+
+*
+
+Unit-I
+
+105
+
+*
+
+Unit-I
+
+106
+
+*
+
+Unit-I
+
+107
+
+*
+
+Unit-I
+
+108
+
+Minimal DFA’s
+
+Two states p and q of a DFA are called 
+
+indistinguishable if 
+δ* (p, w) ∈ F implies δ* (q, w) ∈ F ,
+
+and
+
+δ* (p, w) ∉ F implies δ* (q, w) ∉ F ,
+
+for all w ∈ Σ*.
+
+If there exists some string w ∈ Σ* such that 
+
+ δ* (p, w) ∈ F  
+
+and
+
+ δ* (q, w) ∉ F 
+
+or vice versa, then the states p and q are said to be 
+
+distinguishable by string w.
+
+*
+
+Unit-I
+
+109
+
+The “Mark” procedure
+
+This procedure marks all pairs of distinguishable 
+states.
+
+1.  Remove all inaccessible states.  
+
+2.  Consider all pairs of states (p, q).  If p ∈ F and q ∉ 
+F or vice versa, mark the pair (p, q) as 
+distinguishable.
+
+3.  Repeat the following step until no previously 
+unmarked pairs are marked:
+
+For all pairs (p, q) and all a ∈ Σ, compute δ (p, a) 
+= pa and δ (q, a) = qa.  If the pair (pa, qa) is  marked as 
+distinguishable, mark (p, q) as distinguishable.
+
+*
+
+Unit-I
+
+110
+
+The “Reduce” procedure
+
+Given a DFA M = (Q, Σ, δ, q0, F), we construct a 
+reduced DFA M’ = (Q’, Σ, δ’, q0’, F’) as follows:
+1.  Use procedure Mark to find all pairs of 
+distinguishable states.  Then from this find the sets 
+of indistinguishable states by partitioning the state 
+set Q of the DFA into disjoint subsets {qi, qj, …, qk}, 
+{ql, qm, …, qn}, …, such that any q ∈ Q occurs in 
+exactly one of these subsets, that elements in each 
+subset are indistinguishable, and that any two 
+elements from different subsets are distinguishable.
+
+*
+
+Unit-I
+
+111
+
+The “Reduce” procedure, cont.
+
+2.  For each set {qi, qj, …, qk} of such 
+indistinguishable states, create a state labeled ij…k 
+for M.
+
+3.  For each transition rule of the form δ (qr, a) = qp, 
+find the sets to which qr and qp belong.  If qr ∈ {qi, 
+qj, …, qk} and qp ∈ {ql, qm, …, qn}, add to δ’ a rule δ’ 
+(ij…k, a) = lm…n.
+
+4.  The initial state q0’ is that state of M’ whose label 
+includes the 0.
+
+5.  F’ is the set of all the states whose label contains 
+i such that qi ∈ F.
+
+*
+
+Unit-I
+
+112
+
+Theorem 2.4
+
+Given any DFA M, application of the procedure 
+Reduce yields another DFA M’ such that
+
+L(M) = L(M’)
+
+Furthermore, M’ is minimal in the sense that there is 
+no other DFA with a smaller number of states which 
+also accepts L(M).
+
+*
+
+Unit-I
+
+113
+
+Minimal DFA’s
+
+Example:  This DFA can be reduced to the DFA on the next 
+
+slide.
+
+*
+
+Unit-I
+
+114
+
+Minimal DFA’s
+
+What are the distinguishable pairs?  
+Mark step 2 gives (q0, q4), (q1, q4), (q2, q4) and (q3, q4).
+Step 3 computes δ(q1, 1) = q4 and δ(q0, 1) = q3.  Since (q3, q4) 
+is a distinguishable pair, (q0, q1) is also marked as a 
+distinguishable pair.  Eventually the pairs (q0, q1), (q0, q2), 
+(q0, q3), (q0, q4), (q1, q4), (q2, q4) and (q3, q4) are marked as 
+distinguishable.  
+
+The remaining pairs, (q1, q2), (q1, q3), and (q2, q3) are 
+
+undistinguishable.
+
+The states are partitioned into the sets {q0}, {q1, q2, q3}, and 
+
+{q4}.
+
+*
+
+Unit-I
+
+115
+
+Minimal DFA’s
+
+This is the reduced DFA resulting from the procedure.
+
+*
+
+Unit-I
+
+116
+
+Minimum number of states in an FA
+
+If there are n distinguishable strings in a 
+
+language, then there must be at least n 
+states in the finite automata that accepts it.
+The FA has no memory, other than the current 
+
+state.
+
+This puts a lower bound on the number of 
+states in a FA recognizing a language.
+
+*
+
+Unit-I
+
+117
+
+For
+
+■ Equivalence of DFA and NFA, refer page 
+
+no 33
+
+■ FA’s with ε-transitions, refer page no. 43
+■ Equivalence and minimization of DFA, 
+
+refer page no. 118 
+
+■ All from Lecture Notes#01
+
+*
+
+Unit-I
+
+118
+
+*
+
+Unit-I
+
+119
+
+*
+
+Unit-I
+
+120
+
+*
+
+Unit-I
+
+121
+
+*
+
+Unit-I
+
+122
+
+*
+
+Unit-I
+
+123
+
+*
+
+Unit-I
+
+124
+
+*
+
+Unit-I
+
+125
+
+126
+
+*
+
+Unit-I
+
+127
+
+*
+
+Unit-I
+
+128
+
+*
+
+Unit-I
+
+129
+
+*
+
+Unit-I
+
+                       THANK YOU
+
+130
+
+*
+
+Unit-I
+
+
